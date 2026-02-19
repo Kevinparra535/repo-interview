@@ -40,14 +40,16 @@ If user didn’t specify, assume:
 - `src/domain/entities/<Entity>.ts` (if new)
 - `src/domain/repositories/<Feature>Repository.ts`
 - `src/domain/useCases/`
-  - `GetAll<Feature>UseCase.ts`
-  - `Get<Feature>UseCase.ts`
-  - `Create<Feature>UseCase.ts`
-  - `Update<Feature>UseCase.ts`
-  - `Delete<Feature>UseCase.ts`
+  - `GetAll<Feature>UseCase/index.ts`
+  - `Get<Feature>UseCase/index.ts`
+  - `Create<Feature>UseCase/index.ts`
+  - `Update<Feature>UseCase/index.ts`
+  - `Delete<Feature>UseCase/index.ts`
+  - `UseCase.ts` (base interface)
 
 ### Data
 
+- `src/data/models/<entityModel>.ts` (Firestore/JSON ↔ Domain mapper)
 - `src/data/services/<Feature>Service.ts` (Firestore ops)
 - `src/data/repositories/<Feature>RepositoryImpl.ts`
 
@@ -72,6 +74,70 @@ If user didn’t specify, assume:
 - Data layer implements contracts and calls service/network
 - Map Firestore data models to domain entities (don’t leak snapshots)
 
+### Entity and model structure (mandatory)
+
+- Domain entities MUST be class-based (not plain interfaces) with:
+  - `type <Entity>ConstructorParams`
+  - index signature `[key: string]: any`
+  - constructor assigning required fields and defaults for dates/errors
+  - `Object.assign(this, params)`
+- Data models MUST follow this shape:
+  - `type <Entity>ModelConstructorParams`
+  - utility date parser (e.g. `toDate(value: unknown): Date`)
+  - `static fromJson(json)`
+  - `toJson(): Record<string, unknown>`
+  - `declare module './<entityModel>'` + `prototype.toDomain()` returning domain entity
+- Preserve backend field names exactly as requested (snake_case or custom names), do not auto-rename.
+
+### Canonical templates (reference)
+
+- Entity template:
+
+```ts
+export type <Entity>ConstructorParams = {
+  id: string;
+  // ...fields
+  [key: string]: any;
+};
+
+export class <Entity> {
+  [key: string]: any;
+
+  id: string;
+  // ...fields
+
+  constructor(params: <Entity>ConstructorParams) {
+    this.id = params.id;
+    // ...assignments
+    Object.assign(this, params);
+  }
+}
+```
+
+- Model template:
+
+```ts
+export class <Entity>Model {
+  static fromJson(json: any): <Entity>Model {
+    return new <Entity>Model({ ...json });
+  }
+
+  toJson(): Record<string, unknown> {
+    return { ... };
+  }
+}
+
+declare module './<entityModel>' {
+  interface <Entity>Model {
+    toDomain(): <Entity>;
+  }
+}
+
+<Entity>Model.prototype.toDomain = function toDomain(): <Entity> {
+  return new <Entity>({ ... });
+};
+```
+
 ### Apply SOLID explicitly
 
 - **S — Single Responsibility:** each class has one reason to change (Screen renders UI, ViewModel orchestrates state/actions, UseCase executes one business action, Repository handles persistence contract).
@@ -79,6 +145,13 @@ If user didn’t specify, assume:
 - **L — Liskov Substitution:** implementations (`XxxRepositoryImpl`, `XxxServiceImpl`) must respect interface behavior and return types without surprises.
 - **I — Interface Segregation:** prefer small focused contracts (split read/write concerns when needed) instead of large “god interfaces”.
 - **D — Dependency Inversion:** depend on abstractions (`domain/repositories`, `domain/services`) and inject via Inversify `TYPES`, never on concrete data classes in domain/UI layers.
+
+### Use case convention (mandatory)
+
+- Each use case MUST live in its own folder: `src/domain/useCases/<UseCaseName>/index.ts`.
+- Every use case MUST import `UseCase` from `src/domain/useCases/UseCase.ts`.
+- Every use case class MUST `implement UseCase<Input, Output>`.
+- Public execution method MUST be named `run(data)` (or `run()` when input is `void`).
 
 ---
 

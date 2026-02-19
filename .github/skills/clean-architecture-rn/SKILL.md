@@ -34,20 +34,77 @@ Use this skill whenever you:
 
 - UI screens + components: `src/ui/...`
 - ViewModels: colocated next to screens (e.g. `src/ui/screens/<Feature>/<Feature>ViewModel.ts`)
-- Use cases: `src/domain/useCases/`
+- Use cases: `src/domain/useCases/<UseCaseName>/index.ts` (one folder per use case)
 - Domain entities: `src/domain/entities/`
 - Repository contracts: `src/domain/repositories/`
 - Domain services contracts: `src/domain/services/`
 - Data implementations: `src/data/...` (services/network/models/repositories)
+- Data models: `src/data/models/<entityModel>.ts` with `fromJson/toJson/toDomain`
 
 ## Naming conventions
 
 - `XxxScreen.tsx`
 - `XxxViewModel.ts`
-- `VerbNounXxxUseCase.ts` (one action = one use case)
+- `<UseCaseName>/index.ts` for each use case folder (e.g. `GetAllBankUseCase/index.ts`)
 - `XxxRepository` (interface in domain)
 - `XxxRepositoryImpl` (implementation in data)
 - `XxxService` / `XxxServiceImpl` as needed
+
+## UseCase base contract (mandatory)
+
+- Keep `src/domain/useCases/UseCase.ts` as the canonical base interface.
+- Every use case file MUST import `UseCase` from `@/domain/useCases/UseCase`.
+- Every use case class MUST `implement UseCase<Input, Output>`.
+- Use `run(data)` as the execution method name (or `run()` with `void` input), not ad-hoc method names.
+
+## Entity + model contract (mandatory)
+
+- Entities in `domain/entities` MUST be class-based with constructor params type, `[key: string]: any`, and `Object.assign(this, params)`.
+- Models in `data/models` MUST expose:
+   - constructor params type
+   - conversion helper(s) for dates (`unknown` → `Date`)
+   - `static fromJson(json)`
+   - `toJson()`
+   - module augmentation + `prototype.toDomain()` that returns the domain entity class
+- Keep exact field names defined by product/backend (`snake_case`, custom names, etc.).
+
+### Minimal reference pattern
+
+```ts
+export type XxxConstructorParams = { id: string; [key: string]: any };
+
+export class Xxx {
+   [key: string]: any;
+   id: string;
+
+   constructor(params: XxxConstructorParams) {
+      this.id = params.id;
+      Object.assign(this, params);
+   }
+}
+```
+
+```ts
+export class XxxModel {
+   static fromJson(json: any): XxxModel {
+      return new XxxModel({ ...json });
+   }
+
+   toJson(): Record<string, unknown> {
+      return { ... };
+   }
+}
+
+declare module './xxxModel' {
+   interface XxxModel {
+      toDomain(): Xxx;
+   }
+}
+
+XxxModel.prototype.toDomain = function toDomain(): Xxx {
+   return new Xxx({ ... });
+};
+```
 
 ## DI requirements (Inversify)
 
