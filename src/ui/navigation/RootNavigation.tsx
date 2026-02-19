@@ -3,7 +3,7 @@ import { createStaticNavigation, StaticParamList } from '@react-navigation/nativ
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Platform } from 'react-native';
 
-import { HomeScreen } from '../screens/Home/HomeScreen';
+import HomeScreen from '../screens/Home/HomeScreen';
 import { NotFoundScreen } from '../screens/NotFound/NotFoundScreen';
 
 const HomeTabs = createBottomTabNavigator({

@@ -1,5 +1,5 @@
-import { makeAutoObservable } from 'mobx';
 import { injectable } from 'inversify';
+import { makeAutoObservable } from 'mobx';
 
 @injectable()
 export class HomeViewModel {

@@ -7,7 +7,7 @@ import { TYPES } from '@/config/types';
 
 import { HomeViewModel } from './HomeViewModel';
 
-export const HomeScreen = observer(() => {
+const HomeScreen = () => {
   const viewModel = useMemo(() => container.get<HomeViewModel>(TYPES.HomeViewModel), []);
 
   useEffect(() => {
@@ -15,4 +15,6 @@ export const HomeScreen = observer(() => {
   }, [viewModel]);
 
   return <Text>Hello</Text>;
-});
+};
+
+export default observer(HomeScreen);
