@@ -1,20 +1,29 @@
 import 'react-native-reanimated';
+import 'reflect-metadata';
 
-import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Appearance } from 'react-native';
 
-import { Navigation } from './ui/navigation/RootNavigation';
+import { Navigation } from '@/ui/navigation/RootNavigation';
+import loadFonts from '@/ui/utils/FontLoader';
 
 SplashScreen.preventAutoHideAsync();
 
 export function App() {
-  const [loaded] = useFonts({
-    SpaceMono: require('./assets/fonts/SpaceMono-Regular.ttf'),
-  });
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
+  async function initializeFonts() {
+    const fontsAreLoaded = await loadFonts();
+    setFontsLoaded(fontsAreLoaded);
+  }
+
+  useEffect(() => {
+    initializeFonts();
+    Appearance.setColorScheme('dark');
+  }, []);
+
+  if (!fontsLoaded) {
     return null;
   }
 
