@@ -11,7 +11,7 @@ const HomeScreen = () => {
   const viewModel = useMemo(() => container.get<HomeViewModel>(TYPES.HomeViewModel), []);
 
   useEffect(() => {
-    viewModel.initialize();
+    viewModel.run();
   }, [viewModel]);
 
   return <Text>Hello</Text>;

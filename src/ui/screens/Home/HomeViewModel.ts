@@ -11,7 +11,7 @@ export class HomeViewModel {
     makeAutoObservable(this);
   }
 
-  initialize() {
+  run() {
     this.isInitialized = true;
     this.initializedAt = new Date();
   }
