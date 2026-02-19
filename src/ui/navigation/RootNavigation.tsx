@@ -3,10 +3,6 @@ import { createStaticNavigation, StaticParamList } from '@react-navigation/nativ
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Platform } from 'react-native';
 
-import { HapticTab } from '@/ui/components/shared/HapticTab';
-import { IconSymbol } from '@/ui/components/shared/ui/IconSymbol';
-import TabBarBackground from '@/ui/components/shared/ui/TabBarBackground';
-
 import { HomeScreen } from '../screens/Home/HomeScreen';
 import { NotFoundScreen } from '../screens/NotFound/NotFoundScreen';
 
@@ -16,21 +12,13 @@ const HomeTabs = createBottomTabNavigator({
       screen: HomeScreen,
       options: {
         headerShown: false,
-        tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+        // tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
       },
     },
   },
   screenOptions: {
     headerShown: false,
-    tabBarButton: HapticTab,
-    tabBarBackground: TabBarBackground,
-    tabBarStyle:
-      Platform.OS === 'ios'
-        ? {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute' as const,
-          }
-        : undefined,
+    tabBarStyle: Platform.OS === 'ios' ? { position: 'absolute' as const } : undefined,
   },
 });
 
