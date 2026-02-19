@@ -1,0 +1,18 @@
+import { injectable } from 'inversify';
+import { makeAutoObservable } from 'mobx';
+
+@injectable()
+export class ExploreViewModel {
+  isInitialized = false;
+
+  initializedAt: Date | null = null;
+
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  initialize() {
+    this.isInitialized = true;
+    this.initializedAt = new Date();
+  }
+}
