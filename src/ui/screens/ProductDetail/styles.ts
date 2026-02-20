@@ -63,6 +63,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
+  productHeaderRow: {
+    paddingVertical: Spacings.spacex2,
+    paddingHorizontal: Spacings.lg,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
   idBadge: {
     height: 28,
     borderRadius: 14,

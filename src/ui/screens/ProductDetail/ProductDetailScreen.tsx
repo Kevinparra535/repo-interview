@@ -1,16 +1,8 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import {
-  ArrowLeft,
-  Hash,
-  Image as IconImage,
-  Landmark,
-  Pencil,
-  Trash2,
-  WifiOff,
-} from 'lucide-react-native';
+import { Hash, Image as IconImage, Pencil, Trash2, WifiOff } from 'lucide-react-native';
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import { ActivityIndicator, Image, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { container } from '@/config/di';
@@ -21,7 +13,6 @@ import InfoRow from '@/ui/components/InfoRow';
 import PrimaryButton from '@/ui/components/PrimaryButton';
 import SecondaryButton from '@/ui/components/SecondaryButton';
 import Colors from '@/ui/styles/Colors';
-import Spacings from '@/ui/styles/Spacings';
 
 import { ProductDetailViewModel } from './ProductDetailViewModel';
 import styles from './styles';
@@ -59,17 +50,21 @@ const ProductDetailScreen = () => {
   );
 
   const handleDelete = async () => {
-    const success = await viewModel.delete(bankId);
-    if (success) {
-      setDeleteModalVisible(false);
-      navigation.goBack();
-    }
+    await viewModel.delete(bankId);
   };
 
   // Load on first render
   useEffect(() => {
-    viewModel.getBank(bankId);
+    viewModel.initialize(bankId);
   }, [bankId, viewModel]);
+
+  useEffect(() => {
+    if (viewModel.isDeleteBankResponse) {
+      setDeleteModalVisible(false);
+      viewModel.consumeDeleteResult();
+      navigation.goBack();
+    }
+  }, [navigation, viewModel, viewModel.isDeleteBankResponse]);
 
   if (viewModel.isBankLoading) {
     return (
@@ -103,15 +98,7 @@ const ProductDetailScreen = () => {
         contentContainerStyle={styles.scrollContent}
       >
         {/* Product name + ID badge */}
-        <View
-          style={{
-            paddingVertical: Spacings.spacex2,
-            paddingHorizontal: Spacings.lg,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
+        <View style={styles.productHeaderRow}>
           <Image source={{ uri: bank.logo }} style={styles.logoImage} resizeMode="contain" />
           <View style={styles.nameSection}>
             <Text style={styles.productName}>{bank.name}</Text>
@@ -140,9 +127,9 @@ const ProductDetailScreen = () => {
       </ScrollView>
 
       {/* Delete error banner */}
-      {viewModel.isSubmitError ? (
+      {viewModel.isDeleteBankError ? (
         <View style={styles.errorBanner}>
-          <Text style={styles.errorBannerText}>{viewModel.isSubmitError}</Text>
+          <Text style={styles.errorBannerText}>{viewModel.isDeleteBankError}</Text>
         </View>
       ) : null}
 
@@ -166,7 +153,7 @@ const ProductDetailScreen = () => {
       <DeleteConfirmModal
         visible={deleteModalVisible}
         productName={bank.name}
-        loading={viewModel.isSubmitting}
+        loading={viewModel.isDeleteBankLoading}
         onConfirm={handleDelete}
         onCancel={() => setDeleteModalVisible(false)}
       />

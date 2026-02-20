@@ -15,8 +15,9 @@ export class ProductDetailViewModel {
   isBankError: string | null = null;
   isBankResponse: Bank | null = null;
 
-  isSubmitting: boolean = false;
-  isSubmitError: string | null = null;
+  isDeleteBankLoading: boolean = false;
+  isDeleteBankError: string | null = null;
+  isDeleteBankResponse: boolean = false;
 
   private logger = new Logger('ProductDetailViewModel');
 
@@ -29,6 +30,10 @@ export class ProductDetailViewModel {
 
   get isLoaded(): boolean {
     return !this.isBankLoading && this.isBankResponse !== null;
+  }
+
+  initialize(id: string): void {
+    void this.getBank(id);
   }
 
   async getBank(id: string): Promise<void> {
@@ -53,6 +58,9 @@ export class ProductDetailViewModel {
     this.updateLoadingState(true, null, 'delete');
     try {
       await this.deleteBankUseCase.run({ id });
+      runInAction(() => {
+        this.isDeleteBankResponse = true;
+      });
       this.updateLoadingState(false, null, 'delete');
       return true;
     } catch (e) {
@@ -61,13 +69,20 @@ export class ProductDetailViewModel {
     }
   }
 
+  consumeDeleteResult(): void {
+    runInAction(() => {
+      this.isDeleteBankResponse = false;
+    });
+  }
+
   reset(): void {
     runInAction(() => {
       this.isBankResponse = null;
       this.isBankLoading = false;
       this.isBankError = null;
-      this.isSubmitting = false;
-      this.isSubmitError = null;
+      this.isDeleteBankLoading = false;
+      this.isDeleteBankError = null;
+      this.isDeleteBankResponse = false;
     });
   }
 
@@ -79,8 +94,8 @@ export class ProductDetailViewModel {
           this.isBankError = error;
           break;
         case 'delete':
-          this.isSubmitting = isLoading;
-          this.isSubmitError = error;
+          this.isDeleteBankLoading = isLoading;
+          this.isDeleteBankError = error;
           break;
       }
     });
