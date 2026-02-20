@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import type { LucideIcon } from 'lucide-react-native';
 import { StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
 
 import BorderRadius from '@/ui/styles/BorderRadius';
@@ -7,18 +7,22 @@ import Fonts from '@/ui/styles/Fonts';
 import { ms } from '@/ui/styles/FontsScale';
 import Spacings from '@/ui/styles/Spacings';
 
+import { hexToRgba } from '@/ui/utils/colorUtils';
+
 type Variant =
   /** Transparent bg + 1.5px accent-blue border. Use for secondary actions (Edit, View). */
   | 'outlined'
   /** No border, no fill, accent-blue text weight 500. Use for tertiary/ghost actions. */
-  | 'ghost';
+  | 'ghost'
+  /** Faint white bg + subtle white border + white text. Use for Cancel / Reset actions in modals. */
+  | 'neutral';
 
 type Props = {
   label: string;
   onPress: () => void;
   variant?: Variant;
-  /** Optional leading Ionicons icon */
-  iconName?: keyof typeof Ionicons.glyphMap;
+  /** Optional leading Lucide icon component */
+  icon?: LucideIcon;
   loading?: boolean;
   disabled?: boolean;
   /** Override wrapper style (flex, margin, height, etc.) */
@@ -31,22 +35,28 @@ const SecondaryButton = ({
   label,
   onPress,
   variant = 'outlined',
-  iconName,
+  icon: Icon,
   loading = false,
   disabled = false,
   style,
   borderRadius: borderRadiusProp,
 }: Props) => {
   const isGhost = variant === 'ghost';
+  const isNeutral = variant === 'neutral';
   const radius = borderRadiusProp ?? (isGhost ? BorderRadius.sm : BorderRadius.pill);
+
+  const variantStyle = isNeutral ? styles.neutral : isGhost ? styles.ghost : styles.outlined;
+  const labelVariantStyle = isNeutral ? styles.labelNeutral : isGhost ? styles.labelGhost : styles.labelOutlined;
 
   const containerStyle = [
     styles.base,
-    isGhost ? styles.ghost : styles.outlined,
+    variantStyle,
     { borderRadius: radius },
     disabled && styles.disabled,
     style,
   ];
+
+  const iconColor = isNeutral ? Colors.base.textPrimary : Colors.base.accent;
 
   return (
     <TouchableOpacity
@@ -55,14 +65,13 @@ const SecondaryButton = ({
       disabled={disabled || loading}
       style={containerStyle}
     >
-      {iconName && (
-        <Ionicons
-          name={iconName}
+      {Icon && (
+        <Icon
           size={18}
-          color={Colors.base.accent}
+          color={iconColor}
         />
       )}
-      <Text style={[styles.label, isGhost ? styles.labelGhost : styles.labelOutlined]}>
+      <Text style={[styles.label, labelVariantStyle]}>
         {label}
       </Text>
     </TouchableOpacity>
@@ -92,6 +101,13 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
 
+  neutral: {
+    // Pencil DS: faint white bg + subtle white border — Cancel/Reset buttons
+    backgroundColor: hexToRgba('#FFFFFF', 0.03),
+    borderWidth: 1,
+    borderColor: hexToRgba('#FFFFFF', 0.1),
+  },
+
   disabled: {
     opacity: 0.4,
   },
@@ -112,5 +128,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Medium',
     fontWeight: '500',
     color: Colors.base.accent,
+  },
+
+  labelNeutral: {
+    // Pencil DS Neutral: white text, weight 500 (Inter-Medium)
+    fontFamily: 'Inter-Medium',
+    fontWeight: '500',
+    color: Colors.base.textPrimary,
   },
 });

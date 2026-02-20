@@ -52,6 +52,19 @@ const base = {
   // Badges
   badgeEmpty: hexToRgba(WHITE, 0.08),
 
+  // Danger / destructive (Pencil DS: Delete Confirmation Modal)
+  dangerPrimary: '#E53935',
+  dangerDark: '#B71C1C',
+  dangerDim: hexToRgba('#E53935', 0.08),
+  dangerDimBorder: hexToRgba('#E53935', 0.13),
+  dangerGlow: hexToRgba('#E53935', 0.19),
+
+  // Modal
+  modalBackdrop: hexToRgba('#000000', 0.7),
+  modalCardBg: hexToRgba('#0D1B33', 0.8),
+  modalCardBorder: hexToRgba(WHITE, 0.09),
+  dividerLight: hexToRgba(WHITE, 0.08),
+
   // Product icon accent colors
   iconSavings: ACCENT_BLUE,
   iconCredit: '#9B59B6',

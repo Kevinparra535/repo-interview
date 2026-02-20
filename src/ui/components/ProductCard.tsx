@@ -1,4 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
+import type { LucideIcon } from 'lucide-react-native';
+import { ChevronRight } from 'lucide-react-native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ms } from 'react-native-size-matters';
 
@@ -10,7 +11,7 @@ import Shadows from '../styles/Shadows';
 import Spacings from '../styles/Spacings';
 
 type Props = {
-  iconName: keyof typeof Ionicons.glyphMap;
+  icon: LucideIcon;
   iconBgColor: string;
   name: string;
   productId: string;
@@ -18,11 +19,11 @@ type Props = {
   onPress?: () => void;
 };
 
-const ProductCard = ({ iconName, iconBgColor, name, productId, description, onPress }: Props) => {
+const ProductCard = ({ icon: Icon, iconBgColor, name, productId, description, onPress }: Props) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress} activeOpacity={0.7}>
       <View style={[styles.iconContainer, { backgroundColor: iconBgColor }]}>
-        <Ionicons name={iconName} size={28} color={Colors.bank.textPrimary} />
+        <Icon size={28} color={Colors.bank.textPrimary} />
       </View>
 
       <View style={styles.info}>
@@ -37,7 +38,7 @@ const ProductCard = ({ iconName, iconBgColor, name, productId, description, onPr
         </Text>
       </View>
 
-      <Ionicons name="chevron-forward" size={22} color={Colors.bank.accent} />
+      <ChevronRight size={22} color={Colors.bank.accent} />
     </TouchableOpacity>
   );
 };

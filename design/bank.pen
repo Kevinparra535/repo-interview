@@ -213,7 +213,8 @@
                   "fill": "#FFFFFF50",
                   "content": "Buscar producto...",
                   "fontFamily": "Inter",
-                  "fontSize": 15
+                  "fontSize": 15,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -624,7 +625,8 @@
                   "fill": "#FFFFFF60",
                   "content": "ID: PRD-001",
                   "fontFamily": "Inter",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "text",
@@ -635,7 +637,8 @@
                   "width": "fill_container",
                   "content": "Ahorra con las mejores tasas",
                   "fontFamily": "Inter",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -861,7 +864,8 @@
                   "fill": "#FFFFFF50",
                   "content": "Buscar producto...",
                   "fontFamily": "Inter",
-                  "fontSize": 15
+                  "fontSize": 15,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -967,7 +971,8 @@
                   "fill": "#FFFFFF40",
                   "content": "Intenta con otra búsqueda",
                   "fontFamily": "Inter",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -1414,7 +1419,8 @@
                       "fill": "#FFFFFF60",
                       "content": "ID",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -1455,7 +1461,8 @@
                       "fill": "#FFFFFF60",
                       "content": "Nombre",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -1496,7 +1503,8 @@
                       "fill": "#FFFFFF60",
                       "content": "Descripción",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -1540,7 +1548,8 @@
                       "fill": "#FFFFFF60",
                       "content": "Logo",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "frame",
@@ -1638,7 +1647,8 @@
                       "fill": "#FFFFFF60",
                       "content": "Fecha de Liberación",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -1679,7 +1689,8 @@
                       "fill": "#FFFFFF60",
                       "content": "Fecha de Revisión",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -1950,7 +1961,7 @@
               "stroke": {
                 "align": "inside",
                 "thickness": 1,
-                "fill": "#FFFFFF12"
+                "fill": "#FFFFFF18"
               },
               "effect": [
                 {
@@ -2017,7 +2028,7 @@
                       "width": "fill_container",
                       "height": 48,
                       "fill": "#1C2E4A",
-                      "cornerRadius": 10,
+                      "cornerRadius": 12,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1.5,
@@ -2042,7 +2053,8 @@
                           "fill": "#FFFFFF",
                           "content": "abc",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -2070,7 +2082,8 @@
                           "fill": "#FF5252",
                           "content": "ID no válido. Mínimo 3 caracteres requeridos.",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -2101,11 +2114,11 @@
                       "width": "fill_container",
                       "height": 48,
                       "fill": "#1C2E4A",
-                      "cornerRadius": 10,
+                      "cornerRadius": 12,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1.5,
-                        "fill": "#4CAF50"
+                        "fill": "#00C853"
                       },
                       "padding": [
                         0,
@@ -2121,7 +2134,8 @@
                           "fill": "#FFFFFF",
                           "content": "Cuenta de Ahorros Premium",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "icon_font",
@@ -2131,7 +2145,7 @@
                           "height": 18,
                           "iconFontName": "circle-check",
                           "iconFontFamily": "lucide",
-                          "fill": "#4CAF50"
+                          "fill": "#00C853"
                         }
                       ]
                     }
@@ -2162,11 +2176,11 @@
                       "width": "fill_container",
                       "height": 80,
                       "fill": "#1C2E4A",
-                      "cornerRadius": 10,
+                      "cornerRadius": 12,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
-                        "fill": "#FFFFFF15"
+                        "fill": "#FFFFFF1A"
                       },
                       "layout": "vertical",
                       "padding": [
@@ -2181,7 +2195,8 @@
                           "fill": "#FFFFFF40",
                           "content": "Describe el producto financiero...",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -2212,11 +2227,11 @@
                       "width": "fill_container",
                       "height": 48,
                       "fill": "#1C2E4A",
-                      "cornerRadius": 10,
+                      "cornerRadius": 12,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
-                        "fill": "#FFFFFF15"
+                        "fill": "#FFFFFF1A"
                       },
                       "padding": [
                         0,
@@ -2232,7 +2247,8 @@
                           "fill": "#FFFFFF40",
                           "content": "Seleccionar imagen...",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "icon_font",
@@ -2273,11 +2289,11 @@
                       "width": "fill_container",
                       "height": 48,
                       "fill": "#1C2E4A",
-                      "cornerRadius": 10,
+                      "cornerRadius": 12,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
-                        "fill": "#FFFFFF15"
+                        "fill": "#FFFFFF1A"
                       },
                       "padding": [
                         0,
@@ -2293,7 +2309,8 @@
                           "fill": "#FFFFFF",
                           "content": "19/02/2026",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "icon_font",
@@ -2334,7 +2351,7 @@
                       "width": "fill_container",
                       "height": 48,
                       "fill": "#1C2E4A60",
-                      "cornerRadius": 10,
+                      "cornerRadius": 12,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
@@ -2354,7 +2371,8 @@
                           "fill": "#FFFFFF60",
                           "content": "19/02/2027",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "icon_font",
@@ -2392,7 +2410,8 @@
                           "fill": "#FFFFFF40",
                           "content": "Se calcula automáticamente",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -2407,38 +2426,20 @@
           "id": "B9T7O",
           "name": "Action Row",
           "width": "fill_container",
-          "fill": {
-            "type": "gradient",
-            "gradientType": "linear",
-            "enabled": true,
-            "rotation": 0,
-            "size": {
-              "height": 1
-            },
-            "colors": [
-              {
-                "color": "#0A1628",
-                "position": 0
-              },
-              {
-                "color": "#0D1B33",
-                "position": 1
-              }
-            ]
-          },
+          "fill": "#0D1F3D",
           "stroke": {
             "align": "inside",
             "thickness": {
               "top": 1
             },
-            "fill": "#FFFFFF0D"
+            "fill": "#FFFFFF1A"
           },
-          "gap": 8,
+          "gap": 12,
           "padding": [
-            12,
             16,
+            24,
             32,
-            16
+            24
           ],
           "children": [
             {
@@ -2446,12 +2447,13 @@
               "id": "DYZnv",
               "name": "Reset Button",
               "width": "fill_container",
-              "height": 48,
-              "cornerRadius": 12,
+              "height": 52,
+              "fill": "#FFFFFF08",
+              "cornerRadius": 14,
               "stroke": {
                 "align": "inside",
-                "thickness": 1.5,
-                "fill": "#FFFFFF40"
+                "thickness": 1,
+                "fill": "#FFFFFF1A"
               },
               "gap": 6,
               "justifyContent": "center",
@@ -2461,8 +2463,8 @@
                   "type": "icon_font",
                   "id": "7kc49",
                   "name": "resetIcon",
-                  "width": 16,
-                  "height": 16,
+                  "width": 18,
+                  "height": 18,
                   "iconFontName": "rotate-ccw",
                   "iconFontFamily": "lucide",
                   "fill": "#FFFFFF"
@@ -2474,7 +2476,7 @@
                   "fill": "#FFFFFF",
                   "content": "Reiniciar",
                   "fontFamily": "Inter",
-                  "fontSize": 15,
+                  "fontSize": 16,
                   "fontWeight": "500"
                 }
               ]
@@ -2484,7 +2486,7 @@
               "id": "CJsX0",
               "name": "Add Button",
               "width": "fill_container",
-              "height": 48,
+              "height": 52,
               "fill": {
                 "type": "gradient",
                 "gradientType": "linear",
@@ -2504,7 +2506,7 @@
                   }
                 ]
               },
-              "cornerRadius": 12,
+              "cornerRadius": 14,
               "effect": {
                 "type": "shadow",
                 "shadowType": "outer",
@@ -2523,8 +2525,8 @@
                   "type": "icon_font",
                   "id": "yUpGd",
                   "name": "addIcon",
-                  "width": 16,
-                  "height": 16,
+                  "width": 18,
+                  "height": 18,
                   "iconFontName": "plus",
                   "iconFontFamily": "lucide",
                   "fill": "#FFFFFF"
@@ -2536,7 +2538,7 @@
                   "fill": "#FFFFFF",
                   "content": "Agregar",
                   "fontFamily": "Inter",
-                  "fontSize": 15,
+                  "fontSize": 16,
                   "fontWeight": "600"
                 }
               ]
@@ -2583,7 +2585,8 @@
               "fill": "#607D8B",
               "content": "Banco Premium — Fintech Mobile Banking App • Atomic Design Methodology",
               "fontFamily": "Inter",
-              "fontSize": 16
+              "fontSize": 16,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -3860,7 +3863,8 @@
                               "fill": "#FFFFFF",
                               "content": "Regular weight",
                               "fontFamily": "Inter",
-                              "fontSize": 16
+                              "fontSize": 16,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "text",
@@ -3907,7 +3911,8 @@
                               "fill": "#FFFFFF",
                               "content": "Regular weight",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "text",
@@ -3948,7 +3953,8 @@
                           "fill": "#FFFFFF",
                           "content": "Short description text for product cards",
                           "fontFamily": "Inter",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -3977,7 +3983,8 @@
                           "fill": "#B0BEC5",
                           "content": "Helper text, timestamps, metadata",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -10193,11 +10200,11 @@
                           "name": "FormCard",
                           "width": "fill_container",
                           "fill": "#FFFFFF08",
-                          "cornerRadius": 16,
+                          "cornerRadius": 20,
                           "stroke": {
                             "align": "inside",
                             "thickness": 1,
-                            "fill": "#FFFFFF1A"
+                            "fill": "#FFFFFF18"
                           },
                           "effect": {
                             "type": "background_blur",
@@ -10223,7 +10230,7 @@
                                   "content": "ID",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "500"
+                                  "fontWeight": "600"
                                 },
                                 {
                                   "type": "frame",
@@ -10231,12 +10238,12 @@
                                   "name": "field1Input",
                                   "width": "fill_container",
                                   "height": 48,
-                                  "fill": "#FFFFFF06",
-                                  "cornerRadius": 10,
+                                  "fill": "#1C2E4A",
+                                  "cornerRadius": 12,
                                   "stroke": {
                                     "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#FF4D4F60"
+                                    "thickness": 1.5,
+                                    "fill": "#FF5252"
                                   },
                                   "padding": [
                                     0,
@@ -10271,7 +10278,7 @@
                                   "type": "text",
                                   "id": "celut",
                                   "name": "field1Error",
-                                  "fill": "#FF4D4F",
+                                  "fill": "#FF5252",
                                   "content": "ID no válido, intente de nuevo",
                                   "fontFamily": "Inter",
                                   "fontSize": 12,
@@ -10295,7 +10302,7 @@
                                   "content": "Nombre",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "500"
+                                  "fontWeight": "600"
                                 },
                                 {
                                   "type": "frame",
@@ -10303,12 +10310,12 @@
                                   "name": "field2Input",
                                   "width": "fill_container",
                                   "height": 48,
-                                  "fill": "#FFFFFF06",
-                                  "cornerRadius": 10,
+                                  "fill": "#1C2E4A",
+                                  "cornerRadius": 12,
                                   "stroke": {
                                     "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#34D399"
+                                    "thickness": 1.5,
+                                    "fill": "#00C853"
                                   },
                                   "padding": [
                                     0,
@@ -10375,7 +10382,7 @@
                                   "content": "Descripción",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "500"
+                                  "fontWeight": "600"
                                 },
                                 {
                                   "type": "frame",
@@ -10383,8 +10390,8 @@
                                   "name": "field3Input",
                                   "width": "fill_container",
                                   "height": 80,
-                                  "fill": "#FFFFFF06",
-                                  "cornerRadius": 10,
+                                  "fill": "#1C2E4A",
+                                  "cornerRadius": 12,
                                   "stroke": {
                                     "align": "inside",
                                     "thickness": 1,
@@ -10425,7 +10432,7 @@
                                   "content": "Logo",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "500"
+                                  "fontWeight": "600"
                                 },
                                 {
                                   "type": "frame",
@@ -10433,8 +10440,8 @@
                                   "name": "field4Input",
                                   "width": "fill_container",
                                   "height": 48,
-                                  "fill": "#FFFFFF06",
-                                  "cornerRadius": 10,
+                                  "fill": "#1C2E4A",
+                                  "cornerRadius": 12,
                                   "stroke": {
                                     "align": "inside",
                                     "thickness": 1,
@@ -10487,7 +10494,7 @@
                                   "content": "Fecha Liberación",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "500"
+                                  "fontWeight": "600"
                                 },
                                 {
                                   "type": "frame",
@@ -10495,8 +10502,8 @@
                                   "name": "field5Input",
                                   "width": "fill_container",
                                   "height": 48,
-                                  "fill": "#FFFFFF06",
-                                  "cornerRadius": 10,
+                                  "fill": "#1C2E4A",
+                                  "cornerRadius": 12,
                                   "stroke": {
                                     "align": "inside",
                                     "thickness": 1,
@@ -10549,7 +10556,7 @@
                                   "content": "Fecha Revisión",
                                   "fontFamily": "Inter",
                                   "fontSize": 13,
-                                  "fontWeight": "500"
+                                  "fontWeight": "600"
                                 },
                                 {
                                   "type": "frame",
@@ -10557,8 +10564,8 @@
                                   "name": "field6Input",
                                   "width": "fill_container",
                                   "height": 48,
-                                  "fill": "#FFFFFF06",
-                                  "cornerRadius": 10,
+                                  "fill": "#1C2E4A",
+                                  "cornerRadius": 12,
                                   "stroke": {
                                     "align": "inside",
                                     "thickness": 1,
@@ -10745,23 +10752,29 @@
                       "y": 290,
                       "name": "ModalCard",
                       "width": 340,
-                      "fill": "#0D1F3D",
-                      "cornerRadius": 20,
+                      "fill": "#0D1B33CC",
+                      "cornerRadius": 24,
                       "stroke": {
                         "align": "inside",
                         "thickness": 1,
-                        "fill": "#FFFFFF1A"
+                        "fill": "#FFFFFF18"
                       },
-                      "effect": {
-                        "type": "shadow",
-                        "shadowType": "outer",
-                        "color": "#00000060",
-                        "offset": {
-                          "x": 0,
-                          "y": 8
+                      "effect": [
+                        {
+                          "type": "background_blur",
+                          "radius": 40
                         },
-                        "blur": 32
-                      },
+                        {
+                          "type": "shadow",
+                          "shadowType": "outer",
+                          "color": "#00000060",
+                          "offset": {
+                            "x": 0,
+                            "y": 8
+                          },
+                          "blur": 32
+                        }
+                      ],
                       "layout": "vertical",
                       "gap": 20,
                       "padding": 28,
@@ -10773,7 +10786,7 @@
                           "name": "modalIconBg",
                           "width": 64,
                           "height": 64,
-                          "fill": "#FF4D4F15",
+                          "fill": "#FF525215",
                           "cornerRadius": 32,
                           "layout": "vertical",
                           "justifyContent": "center",
@@ -10787,7 +10800,7 @@
                               "height": 32,
                               "iconFontName": "triangle-alert",
                               "iconFontFamily": "lucide",
-                              "fill": "#FF4D4F"
+                              "fill": "#FF5252"
                             }
                           ]
                         },
@@ -10827,9 +10840,9 @@
                               "id": "eRgCL",
                               "name": "modalCancelBtn",
                               "width": "fill_container",
-                              "height": 48,
+                              "height": 52,
                               "fill": "#FFFFFF08",
-                              "cornerRadius": 12,
+                              "cornerRadius": 14,
                               "stroke": {
                                 "align": "inside",
                                 "thickness": 1,
@@ -10845,7 +10858,7 @@
                                   "fill": "#FFFFFF",
                                   "content": "Cancelar",
                                   "fontFamily": "Inter",
-                                  "fontSize": 15,
+                                  "fontSize": 16,
                                   "fontWeight": "500"
                                 }
                               ]
@@ -10855,9 +10868,37 @@
                               "id": "dis7R",
                               "name": "modalDeleteBtn",
                               "width": "fill_container",
-                              "height": 48,
-                              "fill": "#FF4D4F",
-                              "cornerRadius": 12,
+                              "height": 52,
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#E53935",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#C62828",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 14,
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#E5393555",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 4
+                                },
+                                "blur": 16
+                              },
                               "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
@@ -10868,7 +10909,7 @@
                                   "fill": "#FFFFFF",
                                   "content": "Eliminar",
                                   "fontFamily": "Inter",
-                                  "fontSize": 15,
+                                  "fontSize": 16,
                                   "fontWeight": "600"
                                 }
                               ]
@@ -10882,6 +10923,1364 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "9OiQ7",
+      "x": 3320,
+      "y": 0,
+      "name": "Edit Financial Product",
+      "clip": true,
+      "width": 393,
+      "height": 852,
+      "fill": "#0A1628",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "UezDH",
+          "name": "Nav Bar",
+          "width": "fill_container",
+          "height": 96,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#0A1628",
+                "position": 0
+              },
+              {
+                "color": "#12244A",
+                "position": 1
+              }
+            ]
+          },
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "bottom": 1
+            },
+            "fill": "#FFFFFF0D"
+          },
+          "padding": [
+            44,
+            16,
+            12,
+            16
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "OpsL0",
+              "name": "Back Button",
+              "width": 40,
+              "height": 40,
+              "fill": "#FFFFFF0A",
+              "cornerRadius": 20,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "plHrL",
+                  "name": "backIcon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "eZZWD",
+              "name": "navTitle",
+              "fill": "#FFFFFF",
+              "content": "Editar Producto",
+              "fontFamily": "Inter",
+              "fontSize": 17,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "YU7mM",
+              "name": "editBadge",
+              "fill": "#F59E0B20",
+              "cornerRadius": 10,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#F59E0B40"
+              },
+              "gap": 4,
+              "padding": [
+                3,
+                8,
+                3,
+                6
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "v0grw",
+                  "name": "badgeIcon",
+                  "width": 10,
+                  "height": 10,
+                  "iconFontName": "pencil",
+                  "iconFontFamily": "lucide",
+                  "fill": "#F59E0B"
+                },
+                {
+                  "type": "text",
+                  "id": "9USrR",
+                  "name": "badgeText",
+                  "fill": "#F59E0B",
+                  "content": "Modo Edición",
+                  "fontFamily": "Inter",
+                  "fontSize": 10,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "9sc0o",
+          "name": "Form Scroll Area",
+          "clip": true,
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "Ol5fa",
+              "name": "Form Card",
+              "width": "fill_container",
+              "fill": "#FFFFFF08",
+              "cornerRadius": 20,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#FFFFFF18"
+              },
+              "effect": [
+                {
+                  "type": "shadow",
+                  "shadowType": "outer",
+                  "color": "#00000030",
+                  "offset": {
+                    "x": 0,
+                    "y": 4
+                  },
+                  "blur": 24
+                },
+                {
+                  "type": "background_blur",
+                  "radius": 20
+                }
+              ],
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "GmWpF",
+                  "name": "Field ID",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "87jV1",
+                      "name": "Label Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "55hKT",
+                          "name": "fieldIdLabel",
+                          "fill": "#FFFFFF",
+                          "content": "ID",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "h7Woz",
+                          "name": "noEditLabel",
+                          "fill": "#FFFFFF40",
+                          "content": "(No editable)",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mauOl",
+                      "name": "Input Disabled",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "#111F38",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#FFFFFF0D"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tIN6J",
+                          "name": "fieldIdText",
+                          "fill": "#607D8B",
+                          "content": "PRD-001",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "2UDOD",
+                          "name": "lockIcon",
+                          "width": 16,
+                          "height": 16,
+                          "iconFontName": "lock",
+                          "iconFontFamily": "lucide",
+                          "fill": "#607D8B"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f6KWk",
+                  "name": "Field Nombre",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CCFL4",
+                      "name": "fieldNombreLabel",
+                      "fill": "#FFFFFF",
+                      "content": "Nombre",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EHbIX",
+                      "name": "Input Success",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "#1C2E4A",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1.5,
+                        "fill": "#00C853"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Lvm0j",
+                          "name": "fieldNombreText",
+                          "fill": "#FFFFFF",
+                          "content": "Cuenta de Ahorros Premium",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "5sN0H",
+                          "name": "fieldNombreCheck",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "circle-check",
+                          "iconFontFamily": "lucide",
+                          "fill": "#00C853"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zOdNi",
+                  "name": "Field Descripción",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cGrON",
+                      "name": "fieldDescLabel",
+                      "fill": "#FFFFFF",
+                      "content": "Descripción",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Bnf6Q",
+                      "name": "Textarea Default",
+                      "width": "fill_container",
+                      "height": 80,
+                      "fill": "#1C2E4A",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#FFFFFF1A"
+                      },
+                      "layout": "vertical",
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "8cVE1",
+                          "name": "fieldDescPlaceholder",
+                          "fill": "#FFFFFF",
+                          "content": "Cuenta de ahorros con tasas preferenciales para clientes VIP del banco.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IGRL7",
+                  "name": "Field Logo",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "naQ8g",
+                      "name": "fieldLogoLabel",
+                      "fill": "#FFFFFF",
+                      "content": "Logo",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "bmJSR",
+                      "name": "Input with Icon",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "#1C2E4A",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#FFFFFF1A"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "t5rGk",
+                          "name": "fieldLogoPlaceholder",
+                          "fill": "#FFFFFF",
+                          "content": "logo-ahorros.png",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "h3A5v",
+                          "name": "fieldLogoIcon",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "image",
+                          "iconFontFamily": "lucide",
+                          "fill": "#2D7EF8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uzrBw",
+                  "name": "Field Fecha Liberación",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "0Jnwb",
+                      "name": "fieldReleaseLabel",
+                      "fill": "#FFFFFF",
+                      "content": "Fecha de Liberación",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "IvykQ",
+                      "name": "Date Input",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "#1C2E4A",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#FFFFFF1A"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "eP5Bq",
+                          "name": "fieldReleaseText",
+                          "fill": "#FFFFFF",
+                          "content": "15/01/2025",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "LNNk0",
+                          "name": "fieldReleaseIcon",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "calendar",
+                          "iconFontFamily": "lucide",
+                          "fill": "#2D7EF8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZEKI9",
+                  "name": "Field Fecha Revisión",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "MkZUi",
+                      "name": "Revision Label Row",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "jOQgS",
+                          "name": "labelText",
+                          "fill": "#FFFFFF",
+                          "content": "Fecha de Revisión",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "mOJXy",
+                          "name": "infoIcon",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "info",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF30"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "10uPS",
+                      "name": "Date Input Auto",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "#1C2E4A60",
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "#FFFFFF0D"
+                      },
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "EyuDO",
+                          "name": "fieldRevisionText",
+                          "fill": "#FFFFFF60",
+                          "content": "15/01/2026",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "d9g0B",
+                          "name": "fieldRevisionIcon",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "calendar",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF30"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qbHyU",
+                      "name": "Hint",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "TnUyp",
+                          "name": "fieldRevisionHintIcon",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "info",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF40"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mCnDl",
+                          "name": "fieldRevisionHintText",
+                          "fill": "#FFFFFF40",
+                          "content": "Se calcula automáticamente",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "tiufD",
+          "name": "Action Row",
+          "width": "fill_container",
+          "fill": "#0D1F3D",
+          "stroke": {
+            "align": "inside",
+            "thickness": {
+              "top": 1
+            },
+            "fill": "#FFFFFF1A"
+          },
+          "gap": 12,
+          "padding": [
+            16,
+            24,
+            32,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "HEuLk",
+              "name": "Reset Button",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#FFFFFF08",
+              "cornerRadius": 14,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#FFFFFF1A"
+              },
+              "gap": 6,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "a9O2F",
+                  "name": "resetIcon",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "rotate-ccw",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "JK1dU",
+                  "name": "resetText",
+                  "fill": "#FFFFFF",
+                  "content": "Reiniciar",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zQlXy",
+              "name": "Update Button",
+              "width": "fill_container",
+              "height": 52,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 90,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#2D7EF8",
+                    "position": 0
+                  },
+                  {
+                    "color": "#1A5FCC",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 14,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#2D7EF855",
+                "offset": {
+                  "x": 0,
+                  "y": 4
+                },
+                "blur": 16
+              },
+              "gap": 6,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "fxMYg",
+                  "name": "addIcon",
+                  "width": 18,
+                  "height": 18,
+                  "iconFontName": "check",
+                  "iconFontFamily": "lucide",
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "wnCPN",
+                  "name": "addText",
+                  "fill": "#FFFFFF",
+                  "content": "Actualizar",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "drHbw",
+      "x": 3813,
+      "y": 0,
+      "name": "Delete Confirmation Modal",
+      "clip": true,
+      "width": 393,
+      "height": 852,
+      "fill": "#0A1628",
+      "cornerRadius": 24,
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "n0oSA",
+          "x": 0,
+          "y": 0,
+          "name": "Background Content",
+          "width": 393,
+          "height": 852,
+          "fill": "#0A1628",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "vuPFy",
+              "name": "Header",
+              "width": "fill_container",
+              "height": 120,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 180,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#0A1628",
+                    "position": 0
+                  },
+                  {
+                    "color": "#1A2F5E",
+                    "position": 1
+                  }
+                ]
+              },
+              "padding": [
+                48,
+                20,
+                16,
+                20
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "IhoYl",
+                  "name": "Logo Area",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "CUuyT",
+                      "name": "Logo Icon",
+                      "width": 36,
+                      "height": 36,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#2D7EF8",
+                            "position": 0
+                          },
+                          {
+                            "color": "#1A5FCC",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 8,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "EYm1a",
+                          "name": "logoIconInner",
+                          "width": 20,
+                          "height": 20,
+                          "iconFontName": "landmark",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "zLvia",
+                      "name": "logoText",
+                      "fill": "#FFFFFF",
+                      "content": "Banco",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "iHi0I",
+                  "name": "Avatar",
+                  "width": 40,
+                  "height": 40,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 135,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#2D7EF8",
+                        "position": 0
+                      },
+                      {
+                        "color": "#5B9BF9",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 20,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "RTFdO",
+                      "name": "avatarIcon",
+                      "width": 20,
+                      "height": 20,
+                      "iconFontName": "user",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "p33NN",
+              "name": "Search Section",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "cC8qo",
+                  "name": "Search Bar",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "#FFFFFF12",
+                  "cornerRadius": 24,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FFFFFF18"
+                  },
+                  "gap": 10,
+                  "padding": [
+                    0,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "qCJvx",
+                      "name": "searchIcon",
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "search",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF60"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hBonk",
+                      "name": "searchText",
+                      "fill": "#FFFFFF50",
+                      "content": "Buscar producto...",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uxonp",
+                  "name": "Results Badge",
+                  "height": 28,
+                  "fill": "#2D7EF8",
+                  "cornerRadius": 14,
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "N92Fq",
+                      "name": "badgeText",
+                      "fill": "#FFFFFF",
+                      "content": "5 productos encontrados",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "6oqty",
+              "name": "Products List",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                8,
+                16
+              ],
+              "children": [
+                {
+                  "id": "2ip55",
+                  "type": "ref",
+                  "ref": "k8cgH",
+                  "width": "fill_container",
+                  "name": "card1"
+                },
+                {
+                  "id": "W6N2Y",
+                  "type": "ref",
+                  "ref": "k8cgH",
+                  "width": "fill_container",
+                  "name": "card2",
+                  "descendants": {
+                    "u0ubp": {
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 135,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#8B5CF6",
+                            "position": 0
+                          },
+                          {
+                            "color": "#A78BFA",
+                            "position": 1
+                          }
+                        ]
+                      }
+                    },
+                    "H0me4": {
+                      "iconFontName": "credit-card"
+                    },
+                    "T6UW4": {
+                      "content": "Tarjeta de Crédito"
+                    },
+                    "BcL4C": {
+                      "content": "ID: PRD-002"
+                    },
+                    "D84lP": {
+                      "content": "Crédito flexible para tus compras"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YDWC9",
+          "x": 0,
+          "y": 0,
+          "name": "Modal Backdrop",
+          "width": 393,
+          "height": 852,
+          "fill": "#000000B3",
+          "effect": {
+            "type": "background_blur",
+            "radius": 12
+          }
+        },
+        {
+          "type": "frame",
+          "id": "DgDOp",
+          "x": 30,
+          "y": 222,
+          "name": "Modal Card",
+          "width": 334,
+          "fill": "#0D1B33CC",
+          "cornerRadius": 24,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#FFFFFF18"
+          },
+          "effect": [
+            {
+              "type": "background_blur",
+              "radius": 40
+            },
+            {
+              "type": "shadow",
+              "shadowType": "outer",
+              "color": "#00000080",
+              "offset": {
+                "x": 0,
+                "y": 16
+              },
+              "blur": 48,
+              "spread": -8
+            },
+            {
+              "type": "shadow",
+              "shadowType": "outer",
+              "color": "#E5393520",
+              "blur": 80
+            }
+          ],
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            32,
+            24,
+            24,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "i7ocx",
+              "name": "Warning Icon Outer",
+              "width": 76,
+              "height": 76,
+              "fill": "#E5393515",
+              "cornerRadius": 38,
+              "stroke": {
+                "align": "outside",
+                "thickness": 3,
+                "fill": "#E5393520"
+              },
+              "effect": [
+                {
+                  "type": "shadow",
+                  "shadowType": "outer",
+                  "color": "#E5393530",
+                  "blur": 24
+                },
+                {
+                  "type": "shadow",
+                  "shadowType": "outer",
+                  "color": "#E5393518",
+                  "blur": 48
+                }
+              ],
+              "layout": "vertical",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "1QP8k",
+                  "name": "Warning Icon Inner",
+                  "width": 60,
+                  "height": 60,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 180,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#E53935",
+                        "position": 0
+                      },
+                      {
+                        "color": "#B71C1C",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 30,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#E5393550",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 20
+                  },
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "9S2MB",
+                      "name": "warnIcon",
+                      "width": 28,
+                      "height": 28,
+                      "iconFontName": "triangle-alert",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ckmaj",
+              "name": "Text Content",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "5ut1U",
+                  "name": "title",
+                  "fill": "#FFFFFF",
+                  "content": "¿Eliminar Producto?",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "SLCdc",
+                  "name": "subtitle",
+                  "fill": "#2D7EF8",
+                  "content": "Cuenta de Ahorros Premium",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "zcFIG",
+                  "name": "body",
+                  "fill": "#FFFFFF60",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Esta acción es permanente y no se puede deshacer. El producto será eliminado de forma irreversible.",
+                  "lineHeight": 1.5,
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lmh8t",
+              "name": "Divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#FFFFFF14"
+            },
+            {
+              "type": "frame",
+              "id": "Qnid9",
+              "name": "Button Group",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "apsBc",
+                  "name": "Cancel Button",
+                  "width": "fill_container",
+                  "height": 52,
+                  "fill": "#FFFFFF08",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#FFFFFF1A"
+                  },
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oNHtq",
+                      "name": "cancelText",
+                      "fill": "#FFFFFF",
+                      "content": "Cancelar",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WyD86",
+                  "name": "Delete Button",
+                  "width": "fill_container",
+                  "height": 52,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 90,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#E53935",
+                        "position": 0
+                      },
+                      {
+                        "color": "#B71C1C",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 14,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#E5393555",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 20
+                  },
+                  "gap": 6,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon_font",
+                      "id": "sugDL",
+                      "name": "delIcon",
+                      "width": 18,
+                      "height": 18,
+                      "iconFontName": "trash-2",
+                      "iconFontFamily": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "BgMct",
+                      "name": "deleteText",
+                      "fill": "#FFFFFF",
+                      "content": "Eliminar",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "Kz378",
+          "x": 118,
+          "y": 808,
+          "name": "Dismiss Hint",
+          "fill": "#FFFFFF30",
+          "content": "Toca fuera para cancelar",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "normal"
         }
       ]
     }

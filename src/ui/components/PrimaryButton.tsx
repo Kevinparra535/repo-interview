@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import type { LucideIcon } from 'lucide-react-native';
 import {
   ActivityIndicator,
   StyleProp,
@@ -27,8 +27,8 @@ type Props = {
    * - `destructive`: red gradient `#E53935 → #C62828`
    */
   variant?: Variant;
-  /** Optional leading Ionicons icon */
-  iconName?: keyof typeof Ionicons.glyphMap;
+  /** Optional leading Lucide icon component */
+  icon?: LucideIcon;
   loading?: boolean;
   disabled?: boolean;
   /** Override wrapper style (width, margin, etc.) */
@@ -41,7 +41,7 @@ type Props = {
 
 const VARIANT_GRADIENT: Record<Variant, [string, string]> = {
   accent: [Colors.base.accentGradientStart, Colors.base.accentGradientEnd],
-  destructive: ['#E53935', '#C62828'],
+  destructive: [Colors.base.dangerPrimary, Colors.base.dangerDark],
 };
 
 const VARIANT_SHADOW: Record<Variant, object> = {
@@ -53,7 +53,7 @@ const PrimaryButton = ({
   label,
   onPress,
   variant = 'accent',
-  iconName,
+  icon: Icon,
   loading = false,
   disabled = false,
   style,
@@ -89,7 +89,7 @@ const PrimaryButton = ({
           <ActivityIndicator size="small" color={Colors.base.textPrimary} />
         ) : (
           <>
-            {iconName && <Ionicons name={iconName} size={20} color={Colors.base.textPrimary} />}
+            {Icon && <Icon size={20} color={Colors.base.textPrimary} />}
             <Text style={styles.label}>{label}</Text>
           </>
         )}

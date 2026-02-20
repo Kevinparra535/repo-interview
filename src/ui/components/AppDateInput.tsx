@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Calendar, XCircle } from 'lucide-react-native';
 import DateTimePicker, {
   DateTimePickerAndroid,
   type DateTimePickerEvent,
@@ -152,12 +152,12 @@ const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }
         <View style={styles.actions}>
           {localText.length > 0 ? (
             <TouchableOpacity onPress={handleClear} hitSlop={8}>
-              <Ionicons name="close-circle" size={16} color={Colors.base.iconMuted} />
+              <XCircle size={16} color={Colors.base.iconMuted} />
             </TouchableOpacity>
           ) : null}
 
           <TouchableOpacity onPress={handleCalendarPress} hitSlop={8}>
-            <Ionicons name="calendar-outline" size={16} color={Colors.base.iconMuted} />
+            <Calendar size={16} color={Colors.base.iconMuted} />
           </TouchableOpacity>
         </View>
       </View>

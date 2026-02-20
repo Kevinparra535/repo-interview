@@ -1,4 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
+import type { LucideIcon } from 'lucide-react-native';
+import { CircleCheck, Search, TriangleAlert } from 'lucide-react-native';
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
 
@@ -22,8 +23,8 @@ type Props = Omit<TextInputProps, 'style'> & {
   error?: string;
   /** Show success state (green border + check icon) — default variant only */
   success?: boolean;
-  /** Leading Ionicons icon (overrides the default search icon for the search variant) */
-  leadingIcon?: keyof typeof Ionicons.glyphMap;
+  /** Leading Lucide icon (overrides the default search icon for the search variant) */
+  leadingIcon?: LucideIcon;
 };
 
 // ── state resolvers (extracted to keep component cognitive complexity low) ───
@@ -54,9 +55,9 @@ function resolveInputBarState(opts: {
   return { borderWidth: 1, borderColor: Colors.base.inputBorder };
 }
 
-function resolveTrailingIcon(hasError: boolean, success: boolean) {
-  if (hasError) return { name: 'warning-outline' as const, color: Colors.base.inputErrorBorder };
-  if (success) return { name: 'checkmark-circle-outline' as const, color: Colors.base.inputSuccessBorder };
+function resolveTrailingIcon(hasError: boolean, success: boolean): { Icon: LucideIcon; color: string } | null {
+  if (hasError) return { Icon: TriangleAlert, color: Colors.base.inputErrorBorder };
+  if (success) return { Icon: CircleCheck, color: Colors.base.inputSuccessBorder };
   return null;
 }
 
@@ -76,7 +77,7 @@ const AppTextInput = ({
 }: Props) => {
   const [isFocused, setIsFocused] = useState(false);
   const isSearch = variant === 'search';
-  const iconName = leadingIcon ?? (isSearch ? 'search' : undefined);
+  const LeadingIcon: LucideIcon | undefined = leadingIcon ?? (isSearch ? Search : undefined);
   const isDisabled = !editable;
 
   // ── Search variant (pill search bar, no label/error/state) ─────────────
@@ -84,8 +85,8 @@ const AppTextInput = ({
     return (
       <View style={styles.searchWrapper}>
         <View style={styles.searchBar}>
-          {iconName ? (
-            <Ionicons name={iconName} size={18} color={Colors.base.iconMuted} />
+          {LeadingIcon ? (
+            <LeadingIcon size={18} color={Colors.base.iconMuted} />
           ) : null}
           <TextInput
             style={styles.searchInput}
@@ -115,9 +116,8 @@ const AppTextInput = ({
       ) : null}
 
       <View style={[styles.inputBar, inputBarState]}>
-        {iconName ? (
-          <Ionicons
-            name={iconName}
+        {LeadingIcon ? (
+          <LeadingIcon
             size={16}
             color={isDisabled ? Colors.base.textMuted : Colors.base.iconMuted}
           />
@@ -134,7 +134,7 @@ const AppTextInput = ({
         />
 
         {trailingIcon ? (
-          <Ionicons name={trailingIcon.name} size={18} color={trailingIcon.color} />
+          <trailingIcon.Icon size={18} color={trailingIcon.color} />
         ) : null}
       </View>
 

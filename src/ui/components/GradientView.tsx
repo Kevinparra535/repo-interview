@@ -6,7 +6,7 @@ import Colors from '@/ui/styles/Colors';
 // ---------------------------------------------------------------------------
 // Built-in presets matching the Pencil design tokens
 // ---------------------------------------------------------------------------
-export type GradientPreset = 'header' | 'accent' | 'detailHero';
+export type GradientPreset = 'header' | 'accent' | 'detailHero' | 'destructive';
 
 const GRADIENT_PRESETS: Record<
   GradientPreset,
@@ -27,6 +27,12 @@ const GRADIENT_PRESETS: Record<
   /** Navy → deep-blue — used for Product Detail hero header (#0A1628 → #1A3A70) */
   detailHero: {
     colors: [Colors.base.bgPrimary, '#1A3A70'],
+    start: { x: 0, y: 0 },
+    end: { x: 0, y: 1 },
+  },
+  /** Red danger gradient — used for destructive actions (#E53935 → #B71C1C) */
+  destructive: {
+    colors: [Colors.base.dangerPrimary, Colors.base.dangerDark],
     start: { x: 0, y: 0 },
     end: { x: 0, y: 1 },
   },

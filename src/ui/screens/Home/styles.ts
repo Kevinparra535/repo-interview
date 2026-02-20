@@ -1,3 +1,5 @@
+import { Banknote, CreditCard, ShieldCheck, Wallet } from 'lucide-react-native';
+import type { LucideIcon } from 'lucide-react-native';
 import { StyleSheet } from 'react-native';
 
 import BorderRadius from '@/ui/styles/BorderRadius';
@@ -10,15 +12,15 @@ import Spacings from '@/ui/styles/Spacings';
 // Product icon config — index-cycled in the FlatList
 // ---------------------------------------------------------------------------
 type ProductConfig = {
-  iconName: 'card-outline' | 'wallet-outline' | 'cash-outline' | 'shield-checkmark-outline';
+  icon: LucideIcon;
   iconBgColor: string;
 };
 
 export const PRODUCT_CONFIGS: ProductConfig[] = [
-  { iconName: 'card-outline', iconBgColor: Colors.bank.iconSavings },
-  { iconName: 'wallet-outline', iconBgColor: Colors.bank.iconCredit },
-  { iconName: 'cash-outline', iconBgColor: Colors.bank.iconLoan },
-  { iconName: 'shield-checkmark-outline', iconBgColor: Colors.bank.iconInsurance },
+  { icon: CreditCard, iconBgColor: Colors.bank.iconSavings },
+  { icon: Wallet, iconBgColor: Colors.bank.iconCredit },
+  { icon: Banknote, iconBgColor: Colors.bank.iconLoan },
+  { icon: ShieldCheck, iconBgColor: Colors.bank.iconInsurance },
 ];
 
 // ---------------------------------------------------------------------------

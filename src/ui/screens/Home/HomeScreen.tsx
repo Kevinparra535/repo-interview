@@ -1,8 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Inbox, Landmark, Plus, User } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useMemo } from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, RefreshControl, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { container } from '@/config/di';
@@ -26,7 +26,7 @@ const HomeScreen = () => {
 
     return (
       <ProductCard
-        iconName={config.iconName}
+        icon={config.icon}
         iconBgColor={config.iconBgColor}
         name={item.name}
         productId={item.id}
@@ -48,7 +48,7 @@ const HomeScreen = () => {
     return (
       <View style={styles.emptyContainer}>
         <View style={styles.emptyIconCircle}>
-          <Ionicons name="file-tray-outline" size={56} color={Colors.bank.iconMuted} />
+          <Inbox size={56} color={Colors.bank.iconMuted} />
         </View>
         <View style={styles.emptyTextContainer}>
           <Text style={styles.emptyTitle}>Sin productos</Text>
@@ -56,6 +56,10 @@ const HomeScreen = () => {
         </View>
       </View>
     );
+  };
+
+  const handleRefresh = () => {
+    viewModel.getAllBanks();
   };
 
   useEffect(() => {
@@ -68,12 +72,12 @@ const HomeScreen = () => {
       <GradientView preset="header" style={styles.header}>
         <View style={styles.logoArea}>
           <View style={styles.logoIconContainer}>
-            <Ionicons name="business" size={20} color={Colors.bank.textPrimary} />
+            <Landmark size={20} color={Colors.bank.textPrimary} />
           </View>
           <Text style={styles.logoText}>Banco</Text>
         </View>
         <View style={styles.avatar}>
-          <Ionicons name="person" size={20} color={Colors.bank.textPrimary} />
+          <User size={20} color={Colors.bank.textPrimary} />
         </View>
       </GradientView>
 
@@ -87,13 +91,16 @@ const HomeScreen = () => {
         contentContainerStyle={styles.listContent}
         ListHeaderComponent={<SearchBar viewModel={viewModel} />}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+        refreshControl={
+          <RefreshControl refreshing={viewModel.isBanksLoading} onRefresh={handleRefresh} />
+        }
       />
 
       {/* Add Button */}
       <View style={styles.buttonContainer}>
         <PrimaryButton
           label="Agregar"
-          iconName="add"
+          icon={Plus}
           onPress={() => navigation.navigate('AddProduct' as never)}
         />
       </View>

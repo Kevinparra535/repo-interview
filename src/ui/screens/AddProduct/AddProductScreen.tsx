@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { ArrowLeft } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useMemo } from 'react';
@@ -100,7 +100,7 @@ const AddProductScreen = observer(() => {
     <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       <GradientView preset="header" style={styles.navBar}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back" size={20} color={Colors.base.textPrimary} />
+          <ArrowLeft size={20} color={Colors.base.textPrimary} />
         </TouchableOpacity>
 
         <Text style={styles.navTitle}>Agregar Producto</Text>

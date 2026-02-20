@@ -1,7 +1,15 @@
-import { Ionicons } from '@expo/vector-icons';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import {
+  ArrowLeft,
+  Hash,
+  Image as IconImage,
+  Landmark,
+  Pencil,
+  Trash2,
+  WifiOff,
+} from 'lucide-react-native';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -40,13 +48,13 @@ const ProductLogo = ({ logoUrl }: { logoUrl: string }) => {
       />
     );
   }
-  return <Ionicons name="business" size={38} color={Colors.base.accent} />;
+  return <Landmark size={38} color={Colors.base.accent} />;
 };
 
 const LogoRowValue = ({ logoUrl }: { logoUrl: string }) => (
   <View style={styles.logoValueRow}>
     <GradientView colors={['#2D7EF8', '#5B9BF9']} direction="vertical" style={styles.logoThumb}>
-      <Ionicons name="image-outline" size={14} color="#FFFFFF" />
+      <IconImage size={14} color="#FFFFFF" />
     </GradientView>
     <Text style={styles.logoUrlText} numberOfLines={1} ellipsizeMode="middle">
       {logoUrl}
@@ -84,7 +92,7 @@ const ProductDetailScreen = () => {
         <GradientView preset="detailHero" style={styles.heroHeader}>
           <View style={styles.navBar}>
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-              <Ionicons name="arrow-back" size={20} color={Colors.base.textPrimary} />
+              <ArrowLeft size={20} color={Colors.base.textPrimary} />
             </TouchableOpacity>
             <Text style={styles.navTitle}>Detalle del Producto</Text>
             <View style={styles.navSpacer} />
@@ -103,14 +111,14 @@ const ProductDetailScreen = () => {
         <GradientView preset="detailHero" style={styles.heroHeader}>
           <View style={styles.navBar}>
             <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-              <Ionicons name="arrow-back" size={20} color={Colors.base.textPrimary} />
+              <ArrowLeft size={20} color={Colors.base.textPrimary} />
             </TouchableOpacity>
             <Text style={styles.navTitle}>Detalle del Producto</Text>
             <View style={styles.navSpacer} />
           </View>
         </GradientView>
         <View style={styles.centeredContainer}>
-          <Ionicons name="cloud-offline-outline" size={48} color={Colors.base.iconMuted} />
+          <WifiOff size={48} color={Colors.base.iconMuted} />
           <Text style={styles.errorText}>{viewModel.isBankError ?? 'Producto no encontrado'}</Text>
         </View>
       </SafeAreaView>
@@ -126,7 +134,7 @@ const ProductDetailScreen = () => {
         {/* Nav bar */}
         <View style={styles.navBar}>
           <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-            <Ionicons name="arrow-back" size={20} color={Colors.base.textPrimary} />
+            <ArrowLeft size={20} color={Colors.base.textPrimary} />
           </TouchableOpacity>
           <Text style={styles.navTitle}>Detalle del Producto</Text>
           <View style={styles.navSpacer} />
@@ -151,7 +159,7 @@ const ProductDetailScreen = () => {
           <Text style={styles.productName}>{bank.name}</Text>
 
           <View style={styles.idBadge}>
-            <Ionicons name="pricetag-outline" size={13} color={Colors.base.accent} />
+            <Hash size={13} color={Colors.base.accent} />
             <Text style={styles.idBadgeText}>{bank.id}</Text>
           </View>
         </View>
@@ -185,13 +193,13 @@ const ProductDetailScreen = () => {
         <SecondaryButton
           label="Editar"
           variant="outlined"
-          iconName="pencil-outline"
+          icon={Pencil}
           onPress={() => navigation.navigate('AddProduct' as never)}
         />
         <PrimaryButton
           label="Eliminar"
           variant="destructive"
-          iconName="trash-outline"
+          icon={Trash2}
           onPress={() => setDeleteModalVisible(true)}
         />
       </View>
