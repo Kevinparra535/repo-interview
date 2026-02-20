@@ -17,11 +17,11 @@ UI Screen + ViewModel + UseCases + Domain contracts + Data implementations + DI 
 - Feature name (PascalCase): `Feature`
 - Main entities involved (e.g., Client, Session)
 - CRUD actions required (default: list/get/create/update/delete)
-- Storage source (default: Firestore)
+- Data source / manager (default: REST via Axios)
 
 If user didn’t specify, assume:
 
-- Firestore backend
+- REST backend with Axios manager
 - Standard CRUD use cases
 - Minimal UI skeleton + basic VM state/actions
 
@@ -49,8 +49,8 @@ If user didn’t specify, assume:
 
 ### Data
 
-- `src/data/models/<entityModel>.ts` (Firestore/JSON ↔ Domain mapper)
-- `src/data/services/<Feature>Service.ts` (Firestore ops)
+- `src/data/models/<entityModel>.ts` (DTO/JSON ↔ Domain mapper)
+- `src/data/services/<Feature>Service.ts` (service that delegates to the selected manager)
 - `src/data/repositories/<Feature>RepositoryImpl.ts`
 
 ### DI
@@ -72,7 +72,8 @@ If user didn’t specify, assume:
 - ViewModel depends only on UseCases
 - UseCases depend only on domain contracts
 - Data layer implements contracts and calls service/network
-- Map Firestore data models to domain entities (don’t leak snapshots)
+- Keep manager details isolated in service/network adapters (Axios, Firebase, GraphQL, etc.)
+- Map transport models to domain entities (don’t leak manager-specific shapes to domain/UI)
 
 ### Entity and model structure (mandatory)
 
