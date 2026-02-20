@@ -32,26 +32,43 @@ export const FormInput = ({
   style,
   placeholderTextColor,
   ...textInputProps
-}: FormInputProps) => (
-  <View style={[styles.container, containerStyle]}>
-    <Text style={styles.label}>
-      {label}
-      {required ? <Text style={styles.required}> *</Text> : null}
-    </Text>
+}: FormInputProps) => {
+  const isDisabled = textInputProps.editable === false;
 
-    <View style={[styles.inputWrapper, !!error && styles.inputWrapperError]}>
-      {icon && <Ionicons name={icon} size={16} color={Colors.base.iconMuted} style={styles.icon} />}
+  return (
+    <View style={[styles.container, containerStyle]}>
+      <Text style={[styles.label, isDisabled && styles.labelDisabled]}>
+        {label}
+        {required ? <Text style={styles.required}> *</Text> : null}
+      </Text>
 
-      <TextInput
-        {...textInputProps}
-        style={[styles.input, style]}
-        placeholderTextColor={placeholderTextColor ?? Colors.base.textMuted}
-      />
+      <View
+        style={[
+          styles.inputWrapper,
+          isDisabled && styles.inputWrapperDisabled,
+          !!error && styles.inputWrapperError,
+        ]}
+      >
+        {icon && (
+          <Ionicons
+            name={icon}
+            size={16}
+            color={isDisabled ? Colors.base.textMuted : Colors.base.iconMuted}
+            style={styles.icon}
+          />
+        )}
+
+        <TextInput
+          {...textInputProps}
+          style={[styles.input, isDisabled && styles.inputDisabled, style]}
+          placeholderTextColor={placeholderTextColor ?? Colors.base.textMuted}
+        />
+      </View>
+
+      <Text style={[styles.errorText, !error && styles.errorTextHidden]}>{error ?? ' '}</Text>
     </View>
-
-    <Text style={[styles.errorText, !error && styles.errorTextHidden]}>{error ?? ' '}</Text>
-  </View>
-);
+  );
+};
 
 export default FormInput;
 
@@ -65,6 +82,10 @@ const styles = StyleSheet.create({
     ...Fonts.bodyTextBold,
     fontSize: 13,
     color: Colors.base.textPrimary,
+  },
+
+  labelDisabled: {
+    color: Colors.base.textMuted,
   },
 
   required: {
@@ -88,6 +109,11 @@ const styles = StyleSheet.create({
     borderColor: Colors.base.inputErrorBorder,
   },
 
+  inputWrapperDisabled: {
+    backgroundColor: Colors.base.bgInfoCard,
+    borderColor: Colors.base.inputBorder,
+  },
+
   icon: {
     marginLeft: Spacings.md,
   },
@@ -98,6 +124,10 @@ const styles = StyleSheet.create({
     flex: 1,
     ...Fonts.inputsNormal,
     color: Colors.base.textPrimary,
+  },
+
+  inputDisabled: {
+    color: Colors.base.textMuted,
   },
 
   errorText: {

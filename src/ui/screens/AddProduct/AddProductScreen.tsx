@@ -118,12 +118,12 @@ const AddProductScreen = ({ route }: Props) => {
                 <FormInput
                   required
                   label="ID"
-                  placeholder="ej. trj-cred"
-                  onBlur={onBlur}
                   value={value}
-                  error={errors.id?.message}
-                  onChangeText={onChange}
                   maxLength={10}
+                  onBlur={onBlur}
+                  placeholder="ej. trj-cred"
+                  onChangeText={onChange}
+                  error={errors.id?.message}
                   editable={!viewModel.isEditMode}
                 />
               )}
