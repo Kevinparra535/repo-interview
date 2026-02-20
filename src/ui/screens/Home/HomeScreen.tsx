@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { Inbox, Landmark, Plus, User } from 'lucide-react-native';
+import { Inbox, Landmark, Plus, User, WifiOff } from 'lucide-react-native';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useMemo } from 'react';
 import { ActivityIndicator, FlatList, RefreshControl, Text, View } from 'react-native';
@@ -41,6 +41,20 @@ const HomeScreen = () => {
       return (
         <View style={styles.emptyContainer}>
           <ActivityIndicator size="large" color={Colors.bank.accent} />
+        </View>
+      );
+    }
+
+    if (viewModel.isBanksError) {
+      return (
+        <View style={styles.emptyContainer}>
+          <View style={styles.emptyIconCircle}>
+            <WifiOff size={56} color={Colors.bank.iconMuted} />
+          </View>
+          <View style={styles.emptyTextContainer}>
+            <Text style={styles.emptyTitle}>No se pudo cargar</Text>
+            <Text style={styles.emptySubtitle}>{viewModel.isBanksError}</Text>
+          </View>
         </View>
       );
     }

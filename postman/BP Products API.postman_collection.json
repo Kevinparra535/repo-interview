@@ -1,172 +1,172 @@
 {
-	"info": {
-		"_postman_id": "72bf8493-342d-4201-9b7a-c65ffdcd96b9",
-		"name": "BP Products API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "49693739",
-		"_collection_link": "https://others-amp.postman.co/workspace/Team-Workspace~0e6297ce-fdbe-48a5-865c-492ee3a868ab/collection/49693739-72bf8493-342d-4201-9b7a-c65ffdcd96b9?action=share&source=collection_link&creator=49693739"
-	},
-	"item": [
-		{
-			"name": "Get Products",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/bp/products",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"bp",
-						"products"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Product",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"id\": \"dos\",\n  \"name\": \"Nombre producto\",\n  \"description\": \"Descripción producto\",\n  \"logo\": \"https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg\",\n  \"date_release\": \"2025-01-01\",\n  \"date_revision\": \"2025-01-01\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/bp/products",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"bp",
-						"products"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Product",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"id\": \"dos\",\n  \"name\": \"Nombre producto\",\n  \"description\": \"Descripción producto\",\n  \"logo\": \"https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg\",\n  \"date_release\": \"2025-01-01\",\n  \"date_revision\": \"2025-01-01\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/bp/products/:id",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"bp",
-						"products",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": ""
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Product",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/bp/products/:id",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"bp",
-						"products",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": ""
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Verify Product ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/bp/products/verification/:id",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"bp",
-						"products",
-						"verification",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "uno"
-						}
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"requests": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"requests": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "BASE_URL",
-			"value": "",
-			"type": "default"
-		}
-	]
+  "info": {
+    "_postman_id": "72bf8493-342d-4201-9b7a-c65ffdcd96b9",
+    "name": "BP Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49693739",
+    "_collection_link": "https://go.postman.co/collection/49693739-72bf8493-342d-4201-9b7a-c65ffdcd96b9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/bp/products",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "bp",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"test-one\",\n  \"name\": \"Tarjeta de credito\",\n  \"description\": \"Tarjeta de consumo bajo la modalidad de crédito\",\n  \"logo\": \"https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg\",\n  \"date_release\": \"2025-01-01\",\n  \"date_revision\": \"2024-01-01\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/bp/products",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "bp",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"dos\",\n  \"name\": \"Nombre producto\",\n  \"description\": \"Descripción producto\",\n  \"logo\": \"https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg\",\n  \"date_release\": \"2025-01-01\",\n  \"date_revision\": \"2025-01-01\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/bp/products/:id",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "bp",
+            "products",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/bp/products/:id",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "bp",
+            "products",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Verify Product ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/bp/products/verification/:id",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "bp",
+            "products",
+            "verification",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "uno"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "",
+      "type": "default"
+    }
+  ]
 }
