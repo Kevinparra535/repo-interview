@@ -1,7 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Inbox, Landmark, Plus, User, WifiOff } from 'lucide-react-native';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { ActivityIndicator, FlatList, RefreshControl, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -72,9 +72,11 @@ const HomeScreen = () => {
     );
   };
 
-  useEffect(() => {
-    viewModel.initialize();
-  }, [viewModel]);
+  useFocusEffect(
+    useCallback(() => {
+      void viewModel.getAllBanks();
+    }, [viewModel]),
+  );
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>

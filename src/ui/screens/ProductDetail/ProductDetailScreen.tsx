@@ -1,7 +1,7 @@
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
 import { Hash, Image as IconImage, Pencil, Trash2, WifiOff } from 'lucide-react-native';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -53,10 +53,11 @@ const ProductDetailScreen = () => {
     await viewModel.delete(bankId);
   };
 
-  // Load on first render
-  useEffect(() => {
-    viewModel.initialize(bankId);
-  }, [bankId, viewModel]);
+  useFocusEffect(
+    useCallback(() => {
+      void viewModel.getBank(bankId);
+    }, [bankId, viewModel]),
+  );
 
   useEffect(() => {
     if (viewModel.isDeleteBankResponse) {
