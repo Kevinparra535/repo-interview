@@ -1,4 +1,20 @@
 const Shadows = {
+  bankCard: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 5,
+  },
+
+  bankButton: {
+    shadowColor: '#2D7EF8',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
+    elevation: 8,
+  },
+
   cardShadow: {
     // Reference (design): color #0000000F, y:2, blur:8
     shadowColor: '#000000',

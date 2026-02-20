@@ -17,6 +17,33 @@ const base = {
   silverDark: '#8E9499',
 } as const;
 
+const bank = {
+  bgPrimary: '#0A1628',
+  bgGradientEnd: '#1A2F5E',
+  bgCard: 'rgba(255,255,255,0.03)',
+  bgSearchBar: 'rgba(255,255,255,0.07)',
+  bgSearchBarBorder: 'rgba(255,255,255,0.09)',
+  bgInfoCard: 'rgba(255,255,255,0.04)',
+  accent: '#2D7EF8',
+  accentGradientStart: '#3D8EF8',
+  accentGradientEnd: '#1A6FE8',
+  accentDim: 'rgba(45,126,248,0.12)',
+  accentDimBorder: 'rgba(45,126,248,0.31)',
+  cardBorder: 'rgba(255,255,255,0.10)',
+  separator: 'rgba(255,255,255,0.05)',
+  textPrimary: '#FFFFFF',
+  textSecondary: 'rgba(255,255,255,0.60)',
+  textMuted: 'rgba(255,255,255,0.31)',
+  iconMuted: 'rgba(255,255,255,0.38)',
+  badgeEmpty: 'rgba(255,255,255,0.08)',
+  // Product icon gradient approximations (solid midpoints)
+  iconSavings: '#2D7EF8',
+  iconCredit: '#9B59B6',
+  iconLoan: '#27AE60',
+  iconInsurance: '#E8A030',
+  iconDefault: '#2D7EF8',
+} as const;
+
 const semantic = {
   background: {
     primary: base.pinkSignature,
@@ -56,6 +83,7 @@ const semantic = {
 const Colors = {
   base,
   semantic,
+  bank,
 
   // Backwards-compatible aliases (existing code references these)
   brand: {

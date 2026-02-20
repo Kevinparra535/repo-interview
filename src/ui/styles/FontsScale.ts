@@ -1,1 +1,1 @@
-export { scale as s, verticalScale as vs, moderateScale as ms } from 'react-native-size-matters'; // Escalas
+export { moderateScale as ms, scale as s, verticalScale as vs } from 'react-native-size-matters'; // Escalas

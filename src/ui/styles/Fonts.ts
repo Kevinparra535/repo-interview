@@ -6,7 +6,7 @@ import { ms } from './FontsScale';
 const Fonts = {
   header1: {
     fontSize: ms(30),
-    fontFamily: 'PlayfairDisplay-Bold',
+    fontFamily: 'Inter-Bold',
     color: Colors.semantic.text.primaryDark,
     ...Platform.select({
       android: {
@@ -17,7 +17,7 @@ const Fonts = {
 
   header2: {
     fontSize: ms(26),
-    fontFamily: 'PlayfairDisplay-Bold',
+    fontFamily: 'Inter-Bold',
     color: Colors.semantic.text.primaryDark,
     ...Platform.select({
       android: {
@@ -28,7 +28,7 @@ const Fonts = {
 
   header3: {
     fontSize: ms(22),
-    fontFamily: 'PlayfairDisplay-SemiBold',
+    fontFamily: 'Inter-SemiBold',
     color: Colors.semantic.text.primaryDark,
     ...Platform.select({
       android: {
@@ -39,7 +39,7 @@ const Fonts = {
 
   header4: {
     fontSize: ms(22),
-    fontFamily: 'PlayfairDisplay-Medium',
+    fontFamily: 'Inter-Medium',
     color: Colors.semantic.text.primaryDark,
     ...Platform.select({
       android: {
@@ -50,7 +50,7 @@ const Fonts = {
 
   header5: {
     fontSize: ms(18),
-    fontFamily: 'PlayfairDisplay-Medium',
+    fontFamily: 'Inter-Medium',
     color: Colors.semantic.text.primaryDark,
     ...Platform.select({
       android: {
@@ -61,7 +61,7 @@ const Fonts = {
 
   bigHeader: {
     fontSize: ms(25, 0.2),
-    fontFamily: 'PlayfairDisplay-Bold',
+    fontFamily: 'Inter-Bold',
     color: Colors.semantic.text.primaryDark,
     ...Platform.select({
       android: {
