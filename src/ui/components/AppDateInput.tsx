@@ -1,6 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker, {
+  DateTimePickerAndroid,
+  type DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import BorderRadius from '@/ui/styles/BorderRadius';
 import Colors from '@/ui/styles/Colors';
@@ -52,6 +56,17 @@ function parseDMY(text: string): Date | null {
 const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }: Props) => {
   const [localText, setLocalText] = useState(value ? formatDMY(value) : '');
   const [focused, setFocused] = useState(false);
+  const [showIosPicker, setShowIosPicker] = useState(false);
+
+  const syncDate = (rawDate: Date) => {
+    const normalizedDate = new Date(rawDate);
+    normalizedDate.setHours(0, 0, 0, 0);
+
+    setLocalText(formatDMY(normalizedDate));
+    onChangeDate(normalizedDate);
+    onBlur?.();
+    setFocused(false);
+  };
 
   // Sync external value changes (e.g. reset)
   useEffect(() => {
@@ -76,18 +91,51 @@ const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }
     onBlur?.();
   };
 
+  const handleCalendarPress = async () => {
+    if (Platform.OS === 'web') {
+      Alert.alert('No disponible en web', 'El selector de fecha está disponible en iOS y Android.');
+      return;
+    }
+
+    const initialDate = value ?? parseDMY(localText) ?? new Date();
+
+    if (Platform.OS === 'android') {
+      DateTimePickerAndroid.open({
+        value: initialDate,
+        mode: 'date',
+        is24Hour: true,
+        onChange: (event, selectedDate) => {
+          if (event.type === 'set' && selectedDate) {
+            syncDate(selectedDate);
+          }
+        },
+      });
+      return;
+    }
+
+    setShowIosPicker(true);
+  };
+
+  const handleIosPickerChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
+    if (event.type === 'set' && selectedDate) {
+      syncDate(selectedDate);
+    }
+  };
+
   return (
     <View style={styles.fieldWrapper}>
       {label ? <Text style={styles.label}>{label}</Text> : null}
 
-      <View style={[
-        styles.inputBar,
-        error
-          ? { borderWidth: 1.5, borderColor: Colors.base.inputErrorBorder, ...Shadows.inputError }
-          : focused
-          ? { borderWidth: 2, borderColor: Colors.base.accent, ...Shadows.inputFocus }
-          : { borderWidth: 1, borderColor: Colors.base.inputBorder },
-      ]}>
+      <View
+        style={[
+          styles.inputBar,
+          error
+            ? { borderWidth: 1.5, borderColor: Colors.base.inputErrorBorder, ...Shadows.inputError }
+            : focused
+              ? { borderWidth: 2, borderColor: Colors.base.accent, ...Shadows.inputFocus }
+              : { borderWidth: 1, borderColor: Colors.base.inputBorder },
+        ]}
+      >
         <TextInput
           style={styles.input}
           value={localText}
@@ -101,16 +149,36 @@ const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }
           autoCorrect={false}
         />
 
-        {localText.length > 0 ? (
-          <TouchableOpacity onPress={handleClear} hitSlop={8}>
-            <Ionicons name="close-circle" size={16} color={Colors.base.iconMuted} />
+        <View style={styles.actions}>
+          {localText.length > 0 ? (
+            <TouchableOpacity onPress={handleClear} hitSlop={8}>
+              <Ionicons name="close-circle" size={16} color={Colors.base.iconMuted} />
+            </TouchableOpacity>
+          ) : null}
+
+          <TouchableOpacity onPress={handleCalendarPress} hitSlop={8}>
+            <Ionicons name="calendar-outline" size={16} color={Colors.base.iconMuted} />
           </TouchableOpacity>
-        ) : (
-          <Ionicons name="calendar-outline" size={16} color={Colors.base.iconMuted} />
-        )}
+        </View>
       </View>
 
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
+      {Platform.OS === 'ios' && showIosPicker ? (
+        <View style={styles.iosPickerContainer}>
+          <DateTimePicker
+            value={value ?? parseDMY(localText) ?? new Date()}
+            mode="date"
+            display="spinner"
+            onChange={handleIosPickerChange}
+            textColor={Colors.base.textPrimary}
+          />
+
+          <TouchableOpacity style={styles.iosDoneButton} onPress={() => setShowIosPicker(false)}>
+            <Text style={styles.iosDoneText}>Listo</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </View>
   );
 };
@@ -135,12 +203,9 @@ const styles = StyleSheet.create({
     gap: Spacings.xs,
     width: '100%',
     height: 48,
-    // Pencil DS: fill #1C2E4A, cornerRadius 12
     backgroundColor: Colors.base.inputBg,
     borderRadius: BorderRadius.sm,
   },
-
-  // Removed: inputBarError — handled inline with dynamic state above
 
   input: {
     flex: 1,
@@ -148,7 +213,35 @@ const styles = StyleSheet.create({
     color: Colors.base.textPrimary,
   },
 
+  actions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacings.sm,
+  },
+
   errorText: {
     ...Fonts.labelInputError,
+  },
+
+  iosPickerContainer: {
+    marginTop: Spacings.sm,
+    borderRadius: BorderRadius.sm,
+    borderWidth: 1,
+    borderColor: Colors.base.inputBorder,
+    backgroundColor: Colors.base.inputBg,
+    overflow: 'hidden',
+  },
+
+  iosDoneButton: {
+    borderTopWidth: 1,
+    borderTopColor: Colors.base.inputBorder,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: Spacings.sm,
+  },
+
+  iosDoneText: {
+    ...Fonts.links,
+    color: Colors.base.accent,
   },
 });
