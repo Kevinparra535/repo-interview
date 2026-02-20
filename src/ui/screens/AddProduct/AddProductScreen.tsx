@@ -38,6 +38,8 @@ const AddProductScreen = ({ route }: Props) => {
     handleSubmit,
     control,
     reset,
+    setValue,
+    watch,
   } = useForm<BankProductFormData>({
     mode: 'onChange',
     resolver: zodResolver(bankProductSchema),
@@ -54,6 +56,9 @@ const AddProductScreen = ({ route }: Props) => {
   const onSubmit = handleSubmit(async (values) => {
     await viewModel.submit(values);
   });
+
+  const releaseDate = watch('date_release');
+  const revisionDate = watch('date_revision');
 
   const handleSavePress = useCallback(() => {
     void onSubmit();
@@ -75,6 +80,24 @@ const AddProductScreen = ({ route }: Props) => {
   useEffect(() => {
     reset(viewModel.formValues);
   }, [reset, viewModel.formValues]);
+
+  useEffect(() => {
+    if (!releaseDate) {
+      if (revisionDate !== undefined) {
+        setValue('date_revision', undefined, { shouldValidate: true });
+      }
+      return;
+    }
+
+    const nextRevision = new Date(releaseDate);
+    nextRevision.setFullYear(nextRevision.getFullYear() + 1);
+
+    if (!revisionDate || revisionDate.getTime() !== nextRevision.getTime()) {
+      setValue('date_revision', nextRevision, {
+        shouldValidate: true,
+      });
+    }
+  }, [releaseDate, revisionDate, setValue]);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
@@ -101,6 +124,7 @@ const AddProductScreen = ({ route }: Props) => {
                   error={errors.id?.message}
                   onChangeText={onChange}
                   maxLength={10}
+                  editable={!viewModel.isEditMode}
                 />
               )}
             />
@@ -182,6 +206,7 @@ const AddProductScreen = ({ route }: Props) => {
                   onChangeDate={onChange}
                   onBlur={onBlur}
                   error={errors.date_revision?.message}
+                  editable={false}
                 />
               )}
             />
