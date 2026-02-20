@@ -35,7 +35,7 @@ describe('bankProductSchema', () => {
     if (!result.success) {
       const messages = result.error.issues.map((issue) => issue.message);
       expect(messages).toContain('Mínimo 3 caracteres');
-      expect(messages).toContain('Mínimo 5 caracteres');
+      expect(messages).toContain('Mínimo 6 caracteres');
     }
   });
 
