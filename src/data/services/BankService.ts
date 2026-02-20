@@ -1,6 +1,9 @@
-import { injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
 
+import { config } from '@/config/config';
+import { TYPES } from '@/config/types';
 import { BankModel } from '@/data/models/bankModel';
+import { HttpManager } from '@/data/network/axiosHttpManager';
 
 export interface BankService {
   getAll(): Promise<BankModel[]>;
@@ -10,29 +13,34 @@ export interface BankService {
   delete(id: string): Promise<void>;
 }
 
+type Params = Record<string, unknown>;
+
 @injectable()
 export class BankServiceImpl implements BankService {
-  private readonly storage = new Map<string, Record<string, unknown>>();
+  constructor(@inject(TYPES.HttpManager) private readonly httpManager: HttpManager) {}
 
   async getAll(): Promise<BankModel[]> {
-    return Array.from(this.storage.values()).map((item) => BankModel.fromJson(item));
+    const response = await this.httpManager.get<Params[]>(config.API_ENDPOINTS.PRODUCTS);
+
+    return response.map((item) => BankModel.fromJson(item));
   }
 
   async getById(id: string): Promise<BankModel | null> {
-    const item = this.storage.get(id);
+    const response = await this.getAll();
+    const item = response.find((product) => product.id === id);
 
     if (!item) {
       return null;
     }
 
-    return BankModel.fromJson(item);
+    return item;
   }
 
   async create(model: BankModel): Promise<BankModel> {
     const payload = model.toJson();
-    this.storage.set(model.id, payload);
+    const response = await this.httpManager.post<Params>(config.API_ENDPOINTS.PRODUCTS, payload);
 
-    return BankModel.fromJson(payload);
+    return BankModel.fromJson(response);
   }
 
   async update(id: string, model: BankModel): Promise<BankModel> {
@@ -40,13 +48,15 @@ export class BankServiceImpl implements BankService {
       ...model.toJson(),
       id,
     };
+    const response = await this.httpManager.put<Params>(
+      config.API_ENDPOINTS.PRODUCT_BY_ID(id),
+      payload,
+    );
 
-    this.storage.set(id, payload);
-
-    return BankModel.fromJson(payload);
+    return BankModel.fromJson(response);
   }
 
   async delete(id: string): Promise<void> {
-    this.storage.delete(id);
+    await this.httpManager.delete(config.API_ENDPOINTS.PRODUCT_BY_ID(id));
   }
 }

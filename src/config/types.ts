@@ -1,4 +1,5 @@
 export const TYPES = {
+  HttpManager: Symbol.for('HttpManager'),
   BankService: Symbol.for('BankService'),
   BankRepository: Symbol.for('BankRepository'),
   GetAllBankUseCase: Symbol.for('GetAllBankUseCase'),

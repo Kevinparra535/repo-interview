@@ -1,5 +1,6 @@
 import { Container } from 'inversify';
 
+import { AxiosHttpManager, HttpManager } from '@/data/network/axiosHttpManager';
 import { BankRepositoryImpl } from '@/data/repositories/BankRepositoryImpl';
 import { BankService, BankServiceImpl } from '@/data/services/BankService';
 import { BankRepository } from '@/domain/repositories/BankRepository';
@@ -16,6 +17,7 @@ import { TYPES } from './types';
 
 const container = new Container({ defaultScope: 'Transient' });
 
+container.bind<HttpManager>(TYPES.HttpManager).to(AxiosHttpManager).inSingletonScope();
 container.bind<BankService>(TYPES.BankService).to(BankServiceImpl).inSingletonScope();
 container.bind<BankRepository>(TYPES.BankRepository).to(BankRepositoryImpl).inSingletonScope();
 
