@@ -1,5 +1,5 @@
-import { Inbox, Landmark, Plus, User } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Inbox, Landmark, Plus, User } from 'lucide-react-native';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useMemo } from 'react';
 import { ActivityIndicator, FlatList, RefreshControl, Text, View } from 'react-native';
@@ -58,12 +58,8 @@ const HomeScreen = () => {
     );
   };
 
-  const handleRefresh = () => {
-    viewModel.getAllBanks();
-  };
-
   useEffect(() => {
-    viewModel.getAllBanks();
+    viewModel.initialize();
   }, [viewModel]);
 
   return (
@@ -92,7 +88,10 @@ const HomeScreen = () => {
         ListHeaderComponent={<SearchBar viewModel={viewModel} />}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
         refreshControl={
-          <RefreshControl refreshing={viewModel.isBanksLoading} onRefresh={handleRefresh} />
+          <RefreshControl
+            refreshing={viewModel.isBanksLoading}
+            onRefresh={() => void viewModel.getAllBanks()}
+          />
         }
       />
 

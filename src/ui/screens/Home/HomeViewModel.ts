@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify';
-import { makeAutoObservable, observable, runInAction } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 
 import { TYPES } from '@/config/types';
 import { Bank } from '@/domain/entities/Bank';
@@ -16,8 +16,8 @@ export class HomeViewModel {
 
   private logger = new Logger('HomeViewModel');
 
-  @observable public searchQuery = '';
-  @observable private debouncedSearchQuery = '';
+  public searchQuery = '';
+  private debouncedSearchQuery = '';
 
   constructor(
     @inject(TYPES.GetAllBankUseCase) private readonly getAllBankUseCase: GetAllBankUseCase,
@@ -25,11 +25,11 @@ export class HomeViewModel {
     makeAutoObservable(this);
   }
 
-  get filteredBanks() {
-    if (!this.debouncedSearchQuery.trim()) return this.isBanksResponse;
+  get filteredBanks(): Bank[] {
+    if (!this.debouncedSearchQuery.trim()) return this.isBanksResponse ?? [];
     const q = this.debouncedSearchQuery.toLowerCase();
 
-    return this.isBanksResponse?.filter(
+    return (this.isBanksResponse ?? []).filter(
       (b) =>
         b.name.toLowerCase().includes(q) ||
         b.id.toLowerCase().includes(q) ||
@@ -37,7 +37,17 @@ export class HomeViewModel {
     );
   }
 
-  public setSearchQuery(query: string) {
+  get hasBanks(): boolean {
+    return this.filteredBanks.length > 0;
+  }
+
+  initialize(): void {
+    if (!this.isBanksResponse && !this.isBanksLoading) {
+      void this.getAllBanks();
+    }
+  }
+
+  public setSearchQuery(query: string): void {
     this.searchQuery = query;
 
     if (!query.trim()) {
@@ -48,7 +58,7 @@ export class HomeViewModel {
     this.applyDebouncedSearch(query);
   }
 
-  public async getAllBanks() {
+  public async getAllBanks(): Promise<void> {
     this.updateLoadingState(true, null, 'banks');
 
     try {
@@ -75,11 +85,9 @@ export class HomeViewModel {
 
   private updateLoadingState(isLoading: boolean, error: string | null, type: ICalls) {
     runInAction(() => {
-      switch (type) {
-        case 'banks':
-          this.isBanksLoading = isLoading;
-          this.isBanksError = error;
-          break;
+      if (type === 'banks') {
+        this.isBanksLoading = isLoading;
+        this.isBanksError = error;
       }
     });
   }
