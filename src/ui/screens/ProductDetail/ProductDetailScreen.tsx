@@ -21,6 +21,7 @@ import InfoRow from '@/ui/components/InfoRow';
 import PrimaryButton from '@/ui/components/PrimaryButton';
 import SecondaryButton from '@/ui/components/SecondaryButton';
 import Colors from '@/ui/styles/Colors';
+import Spacings from '@/ui/styles/Spacings';
 
 import { ProductDetailViewModel } from './ProductDetailViewModel';
 import styles from './styles';
@@ -34,22 +35,6 @@ function formatDate(date: Date | undefined): string {
 }
 
 type ProductDetailRoute = RouteProp<{ ProductDetail: { bankId: string } }, 'ProductDetail'>;
-
-const ProductLogo = ({ logoUrl }: { logoUrl: string }) => {
-  const [imgError, setImgError] = useState(false);
-
-  if (!imgError) {
-    return (
-      <Image
-        source={{ uri: logoUrl }}
-        style={styles.logoImage}
-        onError={() => setImgError(true)}
-        resizeMode="contain"
-      />
-    );
-  }
-  return <Landmark size={38} color={Colors.base.accent} />;
-};
 
 const LogoRowValue = ({ logoUrl }: { logoUrl: string }) => (
   <View style={styles.logoValueRow}>
@@ -88,16 +73,7 @@ const ProductDetailScreen = () => {
 
   if (viewModel.isBankLoading) {
     return (
-      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
-        <GradientView preset="detailHero" style={styles.heroHeader}>
-          <View style={styles.navBar}>
-            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-              <ArrowLeft size={20} color={Colors.base.textPrimary} />
-            </TouchableOpacity>
-            <Text style={styles.navTitle}>Detalle del Producto</Text>
-            <View style={styles.navSpacer} />
-          </View>
-        </GradientView>
+      <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
         <View style={styles.centeredContainer}>
           <ActivityIndicator size="large" color={Colors.base.accent} />
         </View>
@@ -107,16 +83,7 @@ const ProductDetailScreen = () => {
 
   if (viewModel.isBankError || !viewModel.isBankResponse) {
     return (
-      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
-        <GradientView preset="detailHero" style={styles.heroHeader}>
-          <View style={styles.navBar}>
-            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-              <ArrowLeft size={20} color={Colors.base.textPrimary} />
-            </TouchableOpacity>
-            <Text style={styles.navTitle}>Detalle del Producto</Text>
-            <View style={styles.navSpacer} />
-          </View>
-        </GradientView>
+      <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
         <View style={styles.centeredContainer}>
           <WifiOff size={48} color={Colors.base.iconMuted} />
           <Text style={styles.errorText}>{viewModel.isBankError ?? 'Producto no encontrado'}</Text>
@@ -128,42 +95,33 @@ const ProductDetailScreen = () => {
   const bank = viewModel.isBankResponse;
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
-      {/* Hero header */}
-      <GradientView preset="detailHero" style={styles.heroHeader}>
-        {/* Nav bar */}
-        <View style={styles.navBar}>
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-            <ArrowLeft size={20} color={Colors.base.textPrimary} />
-          </TouchableOpacity>
-          <Text style={styles.navTitle}>Detalle del Producto</Text>
-          <View style={styles.navSpacer} />
-        </View>
-
-        {/* Logo glow container */}
-        <View style={styles.logoGlowContainer}>
-          <View style={styles.logoCard}>
-            <ProductLogo logoUrl={bank.logo} />
-          </View>
-        </View>
-      </GradientView>
-
+    <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
       {/* Scrollable body */}
       <ScrollView
         style={styles.flex}
-        contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
       >
         {/* Product name + ID badge */}
-        <View style={styles.nameSection}>
-          <Text style={styles.productName}>{bank.name}</Text>
+        <View
+          style={{
+            paddingVertical: Spacings.spacex2,
+            paddingHorizontal: Spacings.lg,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Image source={{ uri: bank.logo }} style={styles.logoImage} resizeMode="contain" />
+          <View style={styles.nameSection}>
+            <Text style={styles.productName}>{bank.name}</Text>
 
-          <View style={styles.idBadge}>
-            <Hash size={13} color={Colors.base.accent} />
-            <Text style={styles.idBadgeText}>{bank.id}</Text>
+            <View style={styles.idBadge}>
+              <Hash size={13} color={Colors.base.accent} />
+              <Text style={styles.idBadgeText}>{bank.id}</Text>
+            </View>
           </View>
         </View>
-
         {/* Info card */}
         <View style={styles.infoWrapper}>
           <View style={styles.infoCard}>

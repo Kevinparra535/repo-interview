@@ -9,7 +9,6 @@ import Spacings from '@/ui/styles/Spacings';
 import { hexToRgba } from '@/ui/utils/colorUtils';
 
 const styles = StyleSheet.create({
-  // ── Screen container ───────────────────────────────────────────────────────
   safeArea: {
     flex: 1,
     backgroundColor: Colors.base.bgPrimary,
@@ -19,45 +18,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  // ── Hero header ────────────────────────────────────────────────────────────
-  heroHeader: {
-    width: '100%',
-    alignItems: 'center',
-    paddingBottom: 28,
-  },
-
-  // ── Nav bar inside hero ────────────────────────────────────────────────────
-  navBar: {
-    width: '100%',
-    height: 56,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: 44,
-    paddingHorizontal: Spacings.lg,
-    paddingBottom: 0,
-  },
-
-  backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: hexToRgba('#FFFFFF', 0.063), // #FFFFFF10
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  navTitle: {
-    ...Fonts.inputsBold,
-    color: Colors.base.textPrimary,
-  },
-
-  navSpacer: {
-    width: 40,
-    height: 40,
-  },
-
-  // ── Logo glow container ────────────────────────────────────────────────────
   logoGlowContainer: {
     width: 88,
     height: 88,
@@ -81,18 +41,18 @@ const styles = StyleSheet.create({
   },
 
   logoImage: {
-    width: 56,
-    height: 56,
-    borderRadius: 8,
+    width: 72,
+    height: 72,
+    borderRadius: Spacings.spacex2,
+    aspectRatio: 1,
+    resizeMode: 'contain',
+    backgroundColor: Colors.claro,
   },
 
-  // ── Product name section ───────────────────────────────────────────────────
   nameSection: {
     width: '100%',
-    paddingTop: 20,
-    paddingHorizontal: Spacings.lg,
-    paddingBottom: 4,
-    alignItems: 'center',
+    paddingLeft: Spacings.spacex2,
+    alignItems: 'flex-start',
     gap: Spacings.sm,
   },
 
@@ -123,7 +83,6 @@ const styles = StyleSheet.create({
     color: Colors.base.accent,
   },
 
-  // ── Info wrapper ───────────────────────────────────────────────────────────
   infoWrapper: {
     paddingTop: 12,
     paddingHorizontal: Spacings.lg,
@@ -141,7 +100,6 @@ const styles = StyleSheet.create({
     ...Shadows.bankCard,
   },
 
-  // ── Logo row value (thumbnail + URL text) ──────────────────────────────────
   logoValueRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -164,12 +122,10 @@ const styles = StyleSheet.create({
     maxWidth: 140,
   },
 
-  // ── Scroll content ─────────────────────────────────────────────────────────
   scrollContent: {
     paddingBottom: Spacings.xl,
   },
 
-  // ── Action buttons ─────────────────────────────────────────────────────────
   actionButtons: {
     width: '100%',
     paddingHorizontal: Spacings.lg,
@@ -178,7 +134,6 @@ const styles = StyleSheet.create({
     gap: 12,
   },
 
-  // ── Loading / error states ─────────────────────────────────────────────────
   centeredContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -193,7 +148,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  // ── Delete error banner ────────────────────────────────────────────────────
   errorBanner: {
     marginHorizontal: Spacings.lg,
     marginBottom: Spacings.sm,
