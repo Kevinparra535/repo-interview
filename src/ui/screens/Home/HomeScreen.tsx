@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useMemo } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
@@ -17,6 +18,7 @@ import { HomeViewModel } from './HomeViewModel';
 import { PRODUCT_CONFIGS, styles } from './styles';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   const viewModel = useMemo(() => container.get<HomeViewModel>(TYPES.HomeViewModel), []);
 
   useEffect(() => {
@@ -77,19 +79,23 @@ const HomeScreen = () => {
 
       {/* Products List */}
       <FlatList
+        renderItem={renderItem}
         data={viewModel.filteredBanks}
         keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        ListHeaderComponent={<SearchBar viewModel={viewModel} />}
+        showsVerticalScrollIndicator={false}
         ListEmptyComponent={renderEmptyState}
         contentContainerStyle={styles.listContent}
-        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={<SearchBar viewModel={viewModel} />}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
       />
 
       {/* Add Button */}
       <View style={styles.buttonContainer}>
-        <PrimaryButton label="Agregar" iconName="add" onPress={() => {}} />
+        <PrimaryButton
+          label="Agregar"
+          iconName="add"
+          onPress={() => navigation.navigate('AddProduct' as never)}
+        />
       </View>
     </SafeAreaView>
   );

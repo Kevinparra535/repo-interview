@@ -8,4 +8,5 @@ export const TYPES = {
   DeleteBankUseCase: Symbol.for('DeleteBankUseCase'),
   HomeViewModel: Symbol.for('HomeViewModel'),
   NotFoundViewModel: Symbol.for('NotFoundViewModel'),
+  AddProductViewModel: Symbol.for('AddProductViewModel'),
 } as const;

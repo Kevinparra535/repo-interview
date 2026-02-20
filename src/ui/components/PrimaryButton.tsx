@@ -25,6 +25,10 @@ type Props = {
   disabled?: boolean;
   /** Override wrapper style (width, margin, etc.) */
   style?: StyleProp<ViewStyle>;
+  /** Override border radius (default: BorderRadius.pill) */
+  borderRadius?: number;
+  /** Override button height (default: 52) */
+  height?: number;
 };
 
 const PrimaryButton = ({
@@ -34,15 +38,27 @@ const PrimaryButton = ({
   loading = false,
   disabled = false,
   style,
+  borderRadius: borderRadiusProp,
+  height: heightProp,
 }: Props) => {
+  const radius = borderRadiusProp ?? BorderRadius.pill;
+  const btnHeight = heightProp ?? 52;
+
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPress}
       disabled={disabled || loading}
-      style={[styles.wrapper, disabled && styles.wrapperDisabled, style]}
+      style={[styles.wrapper, disabled && styles.wrapperDisabled, { borderRadius: radius }, style]}
     >
-      <GradientView preset="accent" style={[styles.gradient, disabled && styles.gradientDisabled]}>
+      <GradientView
+        preset="accent"
+        style={[
+          styles.gradient,
+          disabled && styles.gradientDisabled,
+          { borderRadius: radius, height: btnHeight },
+        ]}
+      >
         {loading ? (
           <ActivityIndicator size="small" color={Colors.base.textPrimary} />
         ) : (
