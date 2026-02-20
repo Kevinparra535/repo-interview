@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 import BorderRadius from '@/ui/styles/BorderRadius';
 import Colors from '@/ui/styles/Colors';
+import Fonts from '@/ui/styles/Fonts';
 import { ms } from '@/ui/styles/FontsScale';
-import Shadows from '@/ui/styles/Shadows';
 import Spacings from '@/ui/styles/Spacings';
 
 // ---------------------------------------------------------------------------
@@ -59,10 +59,9 @@ export const styles = StyleSheet.create({
   },
 
   logoText: {
-    fontWeight: '700',
-    color: Colors.bank.textPrimary,
-    fontSize: ms(22),
+    ...Fonts.header3,
     fontFamily: 'Inter-Bold',
+    color: Colors.bank.textPrimary,
   },
 
   avatar: {
@@ -72,53 +71,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.bank.accent,
     borderRadius: BorderRadius.pill,
-  },
-
-  // ── Search Section ────────────────────────────────────────────────────────
-  searchSection: {
-    paddingBottom: Spacings.sm + 2,
-    gap: Spacings.sm + 2,
-  },
-
-  searchBar: {
-    paddingHorizontal: Spacings.spacex2,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacings.sm,
-    width: '100%',
-    height: 48,
-    backgroundColor: Colors.bank.bgSearchBar,
-    borderRadius: 24,
-    borderWidth: 1,
-    borderColor: Colors.bank.bgSearchBarBorder,
-  },
-
-  searchInput: {
-    flex: 1,
-    color: Colors.bank.textPrimary,
-    fontSize: ms(15),
-    fontFamily: 'Inter-Regular',
-  },
-
-  resultsBadge: {
-    paddingHorizontal: Spacings.sm + 4,
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    alignItems: 'center',
-    height: 28,
-    backgroundColor: Colors.bank.accent,
-    borderRadius: 14,
-  },
-
-  resultsBadgeEmpty: {
-    backgroundColor: Colors.bank.badgeEmpty,
-  },
-
-  resultsBadgeText: {
-    fontWeight: '500',
-    color: Colors.bank.textPrimary,
-    fontSize: ms(12),
-    fontFamily: 'Inter-Medium',
   },
 
   // ── List ──────────────────────────────────────────────────────────────────
@@ -162,16 +114,14 @@ export const styles = StyleSheet.create({
   },
 
   emptyTitle: {
-    fontWeight: '500',
+    ...Fonts.header5,
     color: Colors.bank.textPrimary,
-    fontSize: ms(18),
-    fontFamily: 'Inter-Medium',
   },
 
   emptySubtitle: {
-    color: Colors.bank.textSecondary,
+    ...Fonts.bodyText,
     fontSize: ms(14),
-    fontFamily: 'Inter-Regular',
+    color: Colors.bank.textSecondary,
   },
 
   // ── Add Button ────────────────────────────────────────────────────────────
@@ -180,29 +130,5 @@ export const styles = StyleSheet.create({
     paddingHorizontal: Spacings.md,
     paddingBottom: Spacings.spacex2 + 4,
     backgroundColor: Colors.bank.bgPrimary,
-  },
-
-  addButtonWrapper: {
-    width: '100%',
-    borderRadius: 26,
-    ...Shadows.bankButton,
-  },
-
-  addButton: {
-    paddingHorizontal: Spacings.md,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: Spacings.xs,
-    width: '100%',
-    height: 52,
-    borderRadius: 26,
-  },
-
-  addButtonText: {
-    fontWeight: '600',
-    color: Colors.bank.textPrimary,
-    fontSize: ms(16),
-    fontFamily: 'Inter-SemiBold',
   },
 });

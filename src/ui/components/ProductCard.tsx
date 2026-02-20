@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ms } from 'react-native-size-matters';
 
 import Colors from '@/ui/styles/Colors';
+import Fonts from '@/ui/styles/Fonts';
 
 import BorderRadius from '../styles/BorderRadius';
 import Shadows from '../styles/Shadows';
@@ -71,21 +72,18 @@ const styles = StyleSheet.create({
   },
 
   name: {
-    fontWeight: '600',
+    ...Fonts.bodyTextBold,
     color: Colors.bank.textPrimary,
-    fontSize: ms(15),
-    fontFamily: 'Inter-SemiBold',
   },
 
   productId: {
-    color: Colors.bank.textSecondary,
+    ...Fonts.bodyText,
     fontSize: ms(12),
-    fontFamily: 'Inter-Regular',
+    color: Colors.bank.textSecondary,
   },
 
   description: {
+    ...Fonts.smallBodyText,
     color: Colors.bank.textSecondary,
-    fontSize: ms(13),
-    fontFamily: 'Inter-Regular',
   },
 });

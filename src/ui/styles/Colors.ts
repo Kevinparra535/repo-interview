@@ -1,108 +1,82 @@
+import { hexToRgba } from '@/ui/utils/colorUtils';
+
+// ---------------------------------------------------------------------------
+// Raw hex primitives — single source of truth for each unique hue
+// ---------------------------------------------------------------------------
+const WHITE = '#FFFFFF';
+const DARK_NAVY = '#0A1628';
+const DEEP_BLUE = '#1A2F5E';
+const ACCENT_BLUE = '#2D7EF8';
+const ACCENT_BLUE_LIGHT = '#3D8EF8';
+const ACCENT_BLUE_DARK = '#1A6FE8';
+
+// ---------------------------------------------------------------------------
+// Base palette — composed using hexToRgba; no raw rgba() strings
+// ---------------------------------------------------------------------------
 const base = {
-  blackCouture: '#0B0B0D',
-  blackSoft: '#1A1A1D',
+  // Backgrounds
+  bgPrimary: DARK_NAVY,
+  bgGradientEnd: DEEP_BLUE,
+  bgCard: hexToRgba(WHITE, 0.03),
+  bgSearchBar: hexToRgba(WHITE, 0.07),
+  bgSearchBarBorder: hexToRgba(WHITE, 0.09),
+  bgInfoCard: hexToRgba(WHITE, 0.04),
 
-  goldSilk: '#D9A25F',
-  goldLight: '#F1E2B6',
-  goldDark: '#A6662E',
+  // Accent
+  accent: ACCENT_BLUE,
+  accentGradientStart: ACCENT_BLUE_LIGHT,
+  accentGradientEnd: ACCENT_BLUE_DARK,
+  accentDim: hexToRgba(ACCENT_BLUE, 0.12),
+  accentDimBorder: hexToRgba(ACCENT_BLUE, 0.31),
 
-  pinkSignature: '#D92365',
-  pinkLight: '#D92579',
-  pinkDark: '#B8326E',
+  // Borders / separators
+  cardBorder: hexToRgba(WHITE, 0.1),
+  separator: hexToRgba(WHITE, 0.05),
 
-  ivoryHaute: '#F4EFE9',
-  whitePure: '#FFFFFF',
+  // Text
+  textPrimary: WHITE,
+  textSecondary: hexToRgba(WHITE, 0.6),
+  textMuted: hexToRgba(WHITE, 0.31),
 
-  silverCouture: '#BFC3C7',
-  silverDark: '#8E9499',
-} as const;
+  // Icons
+  iconMuted: hexToRgba(WHITE, 0.38),
 
-const bank = {
-  bgPrimary: '#0A1628',
-  bgGradientEnd: '#1A2F5E',
-  bgCard: 'rgba(255,255,255,0.03)',
-  bgSearchBar: 'rgba(255,255,255,0.07)',
-  bgSearchBarBorder: 'rgba(255,255,255,0.09)',
-  bgInfoCard: 'rgba(255,255,255,0.04)',
-  accent: '#2D7EF8',
-  accentGradientStart: '#3D8EF8',
-  accentGradientEnd: '#1A6FE8',
-  accentDim: 'rgba(45,126,248,0.12)',
-  accentDimBorder: 'rgba(45,126,248,0.31)',
-  cardBorder: 'rgba(255,255,255,0.10)',
-  separator: 'rgba(255,255,255,0.05)',
-  textPrimary: '#FFFFFF',
-  textSecondary: 'rgba(255,255,255,0.60)',
-  textMuted: 'rgba(255,255,255,0.31)',
-  iconMuted: 'rgba(255,255,255,0.38)',
-  badgeEmpty: 'rgba(255,255,255,0.08)',
-  // Product icon gradient approximations (solid midpoints)
-  iconSavings: '#2D7EF8',
+  // Badges
+  badgeEmpty: hexToRgba(WHITE, 0.08),
+
+  // Product icon accent colors
+  iconSavings: ACCENT_BLUE,
   iconCredit: '#9B59B6',
   iconLoan: '#27AE60',
   iconInsurance: '#E8A030',
-  iconDefault: '#2D7EF8',
-} as const;
-
-const semantic = {
-  background: {
-    primary: base.pinkSignature,
-    secondary: base.goldDark,
-    light: base.ivoryHaute,
-  },
-  text: {
-    primaryDark: base.blackCouture,
-    primaryLight: base.ivoryHaute,
-    secondary: base.silverCouture,
-    secondaryDark: base.silverDark,
-    secondaryAA: '#6B7075',
-  },
-  accent: {
-    primary: base.pinkSignature,
-    premium: base.goldSilk,
-  },
-  border: {
-    subtle: base.silverCouture,
-  },
-  divider: {
-    gold: base.goldSilk,
-  },
-  overlay: {
-    white95: 'rgba(255,255,255,0.95)',
-    white80: 'rgba(255,255,255,0.8)',
-    white70: 'rgba(255,255,255,0.7)',
-  },
-  state: {
-    disabled: {
-      text: '#A0A0A0',
-      background: '#F0F0F0',
-    },
-  },
-} as const;
+  iconDefault: ACCENT_BLUE,
+};
 
 const Colors = {
   base,
-  semantic,
-  bank,
+  /** @alias base — kept for backward compatibility */
+  bank: base,
+
+  // Backwards-compatible semantic namespace (used by Fonts.ts & useThemeColor.ts)
+  semantic: {
+    text: {
+      primaryDark: '#1C1C1E',
+      primaryLight: WHITE,
+    },
+    background: {
+      light: '#F5F5F5',
+      primary: DARK_NAVY,
+    },
+  },
 
   // Backwards-compatible aliases (existing code references these)
   brand: {
-    primary: semantic.accent.primary,
-    secondary: base.blackSoft,
-    premium: semantic.accent.premium,
+    primary: base.accent,
+    secondary: base.bgPrimary,
+    premium: base.accentGradientEnd,
   },
 
   variants: {
-    one: base.goldLight,
-    two: base.silverDark,
-    three: base.blackSoft,
-    four: base.goldSilk,
-    five: base.ivoryHaute,
-    six: base.whitePure,
-    seven: base.pinkLight,
-    eight: base.silverCouture,
-    nine: base.blackCouture,
-    ten: base.pinkDark,
     disabled: '#A0A0A0',
     disabledBackground: '#F0F0F0',
   },
@@ -116,12 +90,12 @@ const Colors = {
   },
 
   bg: {
-    claro: semantic.background.light,
-    oscuro: semantic.background.primary,
+    claro: base.bgPrimary,
+    oscuro: base.bgGradientEnd,
   },
 
-  claro: base.whitePure,
-  oscuro: base.blackCouture,
+  claro: base.bgPrimary,
+  oscuro: base.bgGradientEnd,
 } as const;
 
 export default Colors;
