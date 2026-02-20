@@ -22,6 +22,7 @@ type Props = {
   label?: string;
   error?: string;
   placeholder?: string;
+  editable?: boolean;
 };
 
 // ── helpers ─────────────────────────────────────────────────────────────────
@@ -53,7 +54,15 @@ function parseDMY(text: string): Date | null {
 
 // ── component ────────────────────────────────────────────────────────────────
 
-const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }: Props) => {
+const AppDateInput = ({
+  value,
+  onChangeDate,
+  onBlur,
+  label,
+  error,
+  placeholder,
+  editable = true,
+}: Props) => {
   const [localText, setLocalText] = useState(value ? formatDMY(value) : '');
   const [focused, setFocused] = useState(false);
   const [showIosPicker, setShowIosPicker] = useState(false);
@@ -76,6 +85,10 @@ const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }
   }, [value, focused]);
 
   const handleEndEditing = () => {
+    if (!editable) {
+      return;
+    }
+
     setFocused(false);
     onBlur?.();
 
@@ -86,12 +99,20 @@ const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }
   };
 
   const handleClear = () => {
+    if (!editable) {
+      return;
+    }
+
     setLocalText('');
     onChangeDate(undefined);
     onBlur?.();
   };
 
   const handleCalendarPress = async () => {
+    if (!editable) {
+      return;
+    }
+
     if (Platform.OS === 'web') {
       Alert.alert('No disponible en web', 'El selector de fecha está disponible en iOS y Android.');
       return;
@@ -131,13 +152,15 @@ const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }
           styles.inputBar,
           error
             ? { borderWidth: 1.5, borderColor: Colors.base.inputErrorBorder, ...Shadows.inputError }
-            : focused
-              ? { borderWidth: 2, borderColor: Colors.base.accent, ...Shadows.inputFocus }
-              : { borderWidth: 1, borderColor: Colors.base.inputBorder },
+            : editable
+              ? focused
+                ? { borderWidth: 2, borderColor: Colors.base.accent, ...Shadows.inputFocus }
+                : { borderWidth: 1, borderColor: Colors.base.inputBorder }
+              : styles.inputBarDisabled,
         ]}
       >
         <TextInput
-          style={styles.input}
+          style={[styles.input, !editable && styles.inputDisabled]}
           value={localText}
           onChangeText={setLocalText}
           onFocus={() => setFocused(true)}
@@ -147,22 +170,23 @@ const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }
           keyboardType="numbers-and-punctuation"
           maxLength={10}
           autoCorrect={false}
+          editable={editable}
         />
 
         <View style={styles.actions}>
-          {localText.length > 0 ? (
+          {editable && localText.length > 0 ? (
             <TouchableOpacity onPress={handleClear} hitSlop={8}>
               <XCircle size={16} color={Colors.base.iconMuted} />
             </TouchableOpacity>
           ) : null}
 
-          <TouchableOpacity onPress={handleCalendarPress} hitSlop={8}>
-            <Calendar size={16} color={Colors.base.iconMuted} />
+          <TouchableOpacity onPress={handleCalendarPress} hitSlop={8} disabled={!editable}>
+            <Calendar size={16} color={editable ? Colors.base.accent : Colors.base.iconMuted} />
           </TouchableOpacity>
         </View>
       </View>
 
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      <Text style={[styles.errorText, !error && styles.errorTextHidden]}>{error ?? ' '}</Text>
 
       {Platform.OS === 'ios' && showIosPicker ? (
         <View style={styles.iosPickerContainer}>
@@ -187,13 +211,14 @@ export default AppDateInput;
 
 const styles = StyleSheet.create({
   fieldWrapper: {
-    gap: Spacings.xs,
+    gap: 6,
     width: '100%',
   },
 
   label: {
-    ...Fonts.links,
-    color: Colors.base.textSecondary,
+    fontSize: 13,
+    fontFamily: 'Inter-SemiBold',
+    color: Colors.base.textPrimary,
   },
 
   inputBar: {
@@ -213,6 +238,16 @@ const styles = StyleSheet.create({
     color: Colors.base.textPrimary,
   },
 
+  inputDisabled: {
+    color: Colors.base.textMuted,
+  },
+
+  inputBarDisabled: {
+    borderWidth: 1,
+    borderColor: Colors.base.inputBorder,
+    backgroundColor: Colors.base.bgInfoCard,
+  },
+
   actions: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -221,6 +256,10 @@ const styles = StyleSheet.create({
 
   errorText: {
     ...Fonts.labelInputError,
+  },
+
+  errorTextHidden: {
+    opacity: 0,
   },
 
   iosPickerContainer: {

@@ -1862,6 +1862,7 @@
           "type": "frame",
           "id": "X9ZEN",
           "name": "Nav Bar",
+          "rotation": 0.04409763319822416,
           "width": "fill_container",
           "height": 96,
           "fill": {

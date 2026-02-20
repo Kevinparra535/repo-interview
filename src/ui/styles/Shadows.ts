@@ -67,6 +67,15 @@ const Shadows = {
     elevation: 8,
   },
 
+  formCard: {
+    // Pencil DS: color #00000030 (opacity≈0.19), y:4, blur:24
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.19,
+    shadowRadius: 24,
+    elevation: 6,
+  },
+
   logoGlow: {
     // Pencil DS Product Detail hero: color #2D7EF855 blur:32
     shadowColor: '#2D7EF8',

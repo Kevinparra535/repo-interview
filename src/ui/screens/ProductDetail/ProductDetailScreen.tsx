@@ -152,7 +152,7 @@ const ProductDetailScreen = () => {
           label="Editar"
           variant="outlined"
           icon={Pencil}
-          onPress={() => navigation.navigate('AddProduct' as never)}
+          onPress={() => (navigation as any).navigate('EditProduct', { bankId })}
         />
         <PrimaryButton
           label="Eliminar"

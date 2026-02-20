@@ -1,6 +1,5 @@
 import type { LucideIcon } from 'lucide-react-native';
 import { CircleCheck, Search, TriangleAlert } from 'lucide-react-native';
-import { useState } from 'react';
 import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
 
 import BorderRadius from '@/ui/styles/BorderRadius';
@@ -27,19 +26,12 @@ type Props = Omit<TextInputProps, 'style'> & {
   leadingIcon?: LucideIcon;
 };
 
-// ── state resolvers (extracted to keep component cognitive complexity low) ───
-
-function resolveInputBarState(opts: {
-  isDisabled: boolean;
-  hasError: boolean;
-  success: boolean;
-  isFocused: boolean;
-}) {
-  const { isDisabled, hasError, success, isFocused } = opts;
+function resolveInputBarState(opts: { isDisabled: boolean; hasError: boolean; success: boolean }) {
+  const { isDisabled, hasError, success } = opts;
   if (isDisabled) {
     return {
       borderWidth: 1,
-      borderColor: 'rgba(255,255,255,0.05)',   // #FFFFFF0D
+      borderColor: 'rgba(255,255,255,0.05)', // #FFFFFF0D
       backgroundColor: '#111F38',
     };
   }
@@ -49,19 +41,17 @@ function resolveInputBarState(opts: {
   if (success) {
     return { borderWidth: 1.5, borderColor: Colors.base.inputSuccessBorder };
   }
-  if (isFocused) {
-    return { borderWidth: 2, borderColor: Colors.base.accent, ...Shadows.inputFocus };
-  }
   return { borderWidth: 1, borderColor: Colors.base.inputBorder };
 }
 
-function resolveTrailingIcon(hasError: boolean, success: boolean): { Icon: LucideIcon; color: string } | null {
+function resolveTrailingIcon(
+  hasError: boolean,
+  success: boolean,
+): { Icon: LucideIcon; color: string } | null {
   if (hasError) return { Icon: TriangleAlert, color: Colors.base.inputErrorBorder };
   if (success) return { Icon: CircleCheck, color: Colors.base.inputSuccessBorder };
   return null;
 }
-
-// ── component ────────────────────────────────────────────────────────────────
 
 const AppTextInput = ({
   variant = 'default',
@@ -75,19 +65,15 @@ const AppTextInput = ({
   editable = true,
   ...rest
 }: Props) => {
-  const [isFocused, setIsFocused] = useState(false);
   const isSearch = variant === 'search';
   const LeadingIcon: LucideIcon | undefined = leadingIcon ?? (isSearch ? Search : undefined);
   const isDisabled = !editable;
 
-  // ── Search variant (pill search bar, no label/error/state) ─────────────
   if (isSearch) {
     return (
       <View style={styles.searchWrapper}>
         <View style={styles.searchBar}>
-          {LeadingIcon ? (
-            <LeadingIcon size={18} color={Colors.base.iconMuted} />
-          ) : null}
+          {LeadingIcon ? <LeadingIcon size={18} color={Colors.base.iconMuted} /> : null}
           <TextInput
             style={styles.searchInput}
             placeholderTextColor={placeholderTextColor ?? Colors.base.textMuted}
@@ -102,12 +88,12 @@ const AppTextInput = ({
     );
   }
 
-  // ── Default form variant ───────────────────────────────────────────────
-  const inputBarState = resolveInputBarState({ isDisabled, hasError: Boolean(error), success, isFocused });
+  const inputBarState = resolveInputBarState({
+    isDisabled,
+    hasError: Boolean(error),
+    success,
+  });
   const trailingIcon = resolveTrailingIcon(Boolean(error), success);
-
-  const handleFocus: typeof onFocus = (e) => { setIsFocused(true); onFocus?.(e); };
-  const handleBlur: typeof onBlur = (e) => { setIsFocused(false); onBlur?.(e); };
 
   return (
     <View style={styles.fieldWrapper}>
@@ -128,17 +114,15 @@ const AppTextInput = ({
           placeholderTextColor={placeholderTextColor ?? Colors.base.textMuted}
           autoCorrect={false}
           editable={editable}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onFocus={onFocus}
+          onBlur={onBlur}
           {...rest}
         />
 
-        {trailingIcon ? (
-          <trailingIcon.Icon size={18} color={trailingIcon.color} />
-        ) : null}
+        {trailingIcon ? <trailingIcon.Icon size={18} color={trailingIcon.color} /> : null}
       </View>
 
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      <Text style={[styles.errorText, !error && styles.errorTextHidden]}>{error ?? ' '}</Text>
     </View>
   );
 };
@@ -147,13 +131,14 @@ export default AppTextInput;
 
 const styles = StyleSheet.create({
   fieldWrapper: {
-    gap: Spacings.xs,
+    gap: 6,
     width: '100%',
   },
 
   label: {
-    ...Fonts.links,
-    color: Colors.base.textSecondary,
+    fontSize: 13,
+    fontFamily: 'Inter-SemiBold',
+    color: Colors.base.textPrimary,
   },
 
   labelDisabled: {
@@ -161,18 +146,18 @@ const styles = StyleSheet.create({
   },
 
   inputBar: {
-    paddingHorizontal: Spacings.md,
+    paddingRight: Spacings.md,
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacings.xs,
     width: '100%',
-    height: 48,
-    // Pencil DS: fill #1C2E4A, cornerRadius 12
     backgroundColor: Colors.base.inputBg,
-    borderRadius: BorderRadius.sm,       // 12 — matches Pencil DS cornerRadius: 12
+    borderRadius: BorderRadius.sm, // 12 — matches Pencil DS cornerRadius: 12
   },
 
   input: {
+    paddingHorizontal: Spacings.md,
+    height: 48,
     flex: 1,
     ...Fonts.inputsNormal,
     color: Colors.base.textPrimary,
@@ -184,6 +169,10 @@ const styles = StyleSheet.create({
 
   errorText: {
     ...Fonts.labelInputError,
+  },
+
+  errorTextHidden: {
+    opacity: 0,
   },
 
   searchWrapper: {
@@ -209,4 +198,3 @@ const styles = StyleSheet.create({
     color: Colors.base.textPrimary,
   },
 });
-

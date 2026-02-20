@@ -1,50 +1,91 @@
 import { inject, injectable } from 'inversify';
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable, observable, runInAction } from 'mobx';
 
 import { TYPES } from '@/config/types';
 import { Bank } from '@/domain/entities/Bank';
 import { CreateBankUseCase } from '@/domain/useCases/CreateBankUseCase';
+import { GetBankUseCase } from '@/domain/useCases/GetBankUseCase';
+import { UpdateBankUseCase } from '@/domain/useCases/UpdateBankUseCase';
 import { VerifyBankIdUseCase } from '@/domain/useCases/VerifyBankIdUseCase';
+import Logger from '@/ui/utils/Logger';
+
+type ICalls = 'bank' | 'submit' | 'update';
 
 @injectable()
 export class AddProductViewModel {
-  loading = false;
+  public isCreateBankLoading = false;
+  public isCreateBankError: string | null = null;
+  public isCreateBankResponse: Bank | null = null;
 
-  submitError: string | null = null;
+  @observable bankData: Bank | null = null;
 
-  submitSuccess = false;
+  bankLoading = false;
+  bankError: string | null = null;
+  bank: Bank | null = null;
+
+  private logger = new Logger('AddProductViewModel');
 
   constructor(
     @inject(TYPES.CreateBankUseCase) private readonly createBankUseCase: CreateBankUseCase,
+    @inject(TYPES.UpdateBankUseCase) private readonly updateBankUseCase: UpdateBankUseCase,
+    @inject(TYPES.GetBankUseCase) private readonly getBankUseCase: GetBankUseCase,
     @inject(TYPES.VerifyBankIdUseCase) private readonly verifyBankIdUseCase: VerifyBankIdUseCase,
   ) {
     makeAutoObservable(this);
+  }
+
+  async getBank(id: string): Promise<void> {
+    this.updateLoadingState(true, null, 'bank');
+
+    try {
+      const bank = await this.getBankUseCase.run({ id });
+
+      runInAction(() => {
+        this.bank = bank;
+      });
+
+      this.updateLoadingState(false, bank ? null : 'Producto no encontrado', 'bank');
+    } catch (error) {
+      this.handleError(error, 'bank');
+    }
   }
 
   /**
    * Submits the new bank product.
    * @returns `true` on success, `false` on error (error stored in `submitError`).
    */
-  async submit(bank: Bank): Promise<boolean> {
-    this.loading = true;
-    this.submitError = null;
+  async sendData(bank: Bank): Promise<boolean> {
+    this.updateLoadingState(true, null, 'submit');
 
     try {
-      await this.createBankUseCase.run({ bank });
+      const response = await this.createBankUseCase.run({ bank });
 
       runInAction(() => {
-        this.submitSuccess = true;
-        this.loading = false;
+        this.isCreateBankResponse = response;
       });
 
+      this.updateLoadingState(false, null, 'submit');
       return true;
-    } catch (e: unknown) {
+    } catch (error) {
+      this.handleError(error, 'submit');
+      return false;
+    }
+  }
+
+  async update(id: string, bank: Bank): Promise<boolean> {
+    this.updateLoadingState(true, null, 'update');
+
+    try {
+      const updated = await this.updateBankUseCase.run({ id, bank });
+
       runInAction(() => {
-        this.submitError =
-          e instanceof Error ? e.message : 'Error al crear el producto. Intenta nuevamente.';
-        this.loading = false;
+        this.bank = updated;
       });
 
+      this.updateLoadingState(false, null, 'update');
+      return true;
+    } catch (error) {
+      this.handleError(error, 'update');
       return false;
     }
   }
@@ -64,9 +105,25 @@ export class AddProductViewModel {
   }
 
   /** Resets loading/error/success state (e.g. when navigating away). */
-  reset() {
-    this.loading = false;
-    this.submitError = null;
-    this.submitSuccess = false;
+  reset(): void {
+    runInAction(() => {
+      this.bankData = null;
+    });
+  }
+
+  private updateLoadingState(isLoading: boolean, error: string | null, type: ICalls): void {
+    runInAction(() => {
+      switch (type) {
+        case 'submit':
+          this.isCreateBankLoading = isLoading;
+          this.isCreateBankError = error;
+      }
+    });
+  }
+
+  private handleError(error: unknown, type: ICalls): void {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    this.logger.error(`Error in ${type}: ${errorMessage}`);
+    this.updateLoadingState(false, errorMessage, type);
   }
 }

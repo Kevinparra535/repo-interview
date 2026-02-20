@@ -3,8 +3,9 @@ import { StyleSheet } from 'react-native';
 import BorderRadius from '@/ui/styles/BorderRadius';
 import Colors from '@/ui/styles/Colors';
 import Fonts from '@/ui/styles/Fonts';
-import { ms } from '@/ui/styles/FontsScale';
+import Shadows from '@/ui/styles/Shadows';
 import Spacings from '@/ui/styles/Spacings';
+import { hexToRgba } from '@/ui/utils/colorUtils';
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -18,19 +19,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: Spacings.spacex4 + Spacings.xs, // 44
+    paddingTop: Spacings.spacex4 + Spacings.xs,
     paddingHorizontal: Spacings.spacex2,
     paddingBottom: Spacings.md / 2,
     height: 96,
   },
 
   backButton: {
-    width: 40,
-    height: 40,
-    backgroundColor: Colors.base.bgCard,
-    borderRadius: 20,
+    width: Spacings.xl,
+    height: Spacings.xl,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: Colors.base.bgCard,
+    borderRadius: BorderRadius.lg,
   },
 
   navTitle: {
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
   },
 
   navSpacer: {
-    width: 40,
-    height: 40,
+    width: Spacings.xl,
+    height: Spacings.xl,
   },
 
   // ── Form scroll ──────────────────────────────────────────────────────────
@@ -55,27 +56,13 @@ const styles = StyleSheet.create({
   },
 
   formCard: {
-    gap: Spacings.spacex2,
+    gap: 16,
     padding: Spacings.spacex2,
     backgroundColor: Colors.base.bgCard,
     borderRadius: BorderRadius.lg,
     borderWidth: 1,
-    borderColor: Colors.base.bgSearchBar,
-  },
-
-  sectionTitle: {
-    ...Fonts.links,
-    fontSize: ms(11),
-    color: Colors.base.textMuted,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    marginBottom: Spacings.xs,
-  },
-
-  separator: {
-    height: 1,
-    backgroundColor: Colors.base.separator,
-    marginVertical: Spacings.xs,
+    borderColor: Colors.base.bgSearchBarBorder,
+    ...Shadows.formCard,
   },
 
   // ── Submit error banner ──────────────────────────────────────────────────
@@ -85,7 +72,7 @@ const styles = StyleSheet.create({
     marginBottom: Spacings.sm,
     paddingVertical: Spacings.sm,
     paddingHorizontal: Spacings.md,
-    backgroundColor: Colors.alerts.error + '22',
+    backgroundColor: hexToRgba(Colors.alerts.error, 0.13),
     borderRadius: BorderRadius.xs,
     borderWidth: 1,
     borderColor: Colors.alerts.error,
@@ -100,17 +87,40 @@ const styles = StyleSheet.create({
 
   actionRow: {
     flexDirection: 'row',
-    gap: Spacings.sm,
-    paddingVertical: Spacings.sm + Spacings.xs,
-    paddingHorizontal: Spacings.spacex2,
-    paddingBottom: Spacings.spacex3,
+    gap: 12,
+    paddingTop: 16,
+    paddingHorizontal: 24,
+    paddingBottom: 32,
+    backgroundColor: Colors.base.actionRowBg,
     borderTopWidth: 1,
-    borderTopColor: Colors.base.separator,
+    borderTopColor: Colors.base.cardBorder,
   },
 
   actionBtn: {
     flex: 1,
+    height: 52,
     width: undefined,
+  },
+
+  // ── Loading / Error states ───────────────────────────────────────────────
+
+  centeredContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  errorStateContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: Spacings.spacex2,
+  },
+
+  errorStateText: {
+    ...Fonts.bodyText,
+    color: Colors.base.textSecondary,
+    textAlign: 'center',
   },
 });
 

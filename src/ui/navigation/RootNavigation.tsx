@@ -60,7 +60,15 @@ const RootStack = createNativeStackNavigator({
     AddProduct: {
       screen: AddProductScreen,
       options: {
-        headerShown: false,
+        headerShown: true,
+        title: 'Agregar producto',
+      },
+    },
+    EditProduct: {
+      screen: AddProductScreen,
+      options: {
+        headerShown: true,
+        title: 'Editar producto',
       },
     },
     ProductDetail: {
