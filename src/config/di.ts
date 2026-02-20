@@ -9,6 +9,7 @@ import { DeleteBankUseCase } from '@/domain/useCases/DeleteBankUseCase';
 import { GetAllBankUseCase } from '@/domain/useCases/GetAllBankUseCase';
 import { GetBankUseCase } from '@/domain/useCases/GetBankUseCase';
 import { UpdateBankUseCase } from '@/domain/useCases/UpdateBankUseCase';
+import { VerifyBankIdUseCase } from '@/domain/useCases/VerifyBankIdUseCase';
 import { AddProductViewModel } from '@/ui/screens/AddProduct/AddProductViewModel';
 import { HomeViewModel } from '@/ui/screens/Home/HomeViewModel';
 import { NotFoundViewModel } from '@/ui/screens/NotFound/NotFoundViewModel';
@@ -23,6 +24,7 @@ container.bind<BankRepository>(TYPES.BankRepository).to(BankRepositoryImpl).inSi
 
 container.bind<GetAllBankUseCase>(TYPES.GetAllBankUseCase).to(GetAllBankUseCase);
 container.bind<GetBankUseCase>(TYPES.GetBankUseCase).to(GetBankUseCase);
+container.bind<VerifyBankIdUseCase>(TYPES.VerifyBankIdUseCase).to(VerifyBankIdUseCase);
 container.bind<CreateBankUseCase>(TYPES.CreateBankUseCase).to(CreateBankUseCase);
 container.bind<UpdateBankUseCase>(TYPES.UpdateBankUseCase).to(UpdateBankUseCase);
 container.bind<DeleteBankUseCase>(TYPES.DeleteBankUseCase).to(DeleteBankUseCase);

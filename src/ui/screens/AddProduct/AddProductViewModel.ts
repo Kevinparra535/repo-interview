@@ -4,7 +4,7 @@ import { makeAutoObservable, runInAction } from 'mobx';
 import { TYPES } from '@/config/types';
 import { Bank } from '@/domain/entities/Bank';
 import { CreateBankUseCase } from '@/domain/useCases/CreateBankUseCase';
-import { GetBankUseCase } from '@/domain/useCases/GetBankUseCase';
+import { VerifyBankIdUseCase } from '@/domain/useCases/VerifyBankIdUseCase';
 
 @injectable()
 export class AddProductViewModel {
@@ -16,7 +16,7 @@ export class AddProductViewModel {
 
   constructor(
     @inject(TYPES.CreateBankUseCase) private readonly createBankUseCase: CreateBankUseCase,
-    @inject(TYPES.GetBankUseCase) private readonly getBankUseCase: GetBankUseCase,
+    @inject(TYPES.VerifyBankIdUseCase) private readonly verifyBankIdUseCase: VerifyBankIdUseCase,
   ) {
     makeAutoObservable(this);
   }
@@ -55,9 +55,8 @@ export class AddProductViewModel {
    */
   async verifyIdAvailable(id: string): Promise<boolean> {
     try {
-      const existing = await this.getBankUseCase.run({ id });
-      // null means the product doesn't exist → ID is available
-      return existing === null;
+      const exists = await this.verifyBankIdUseCase.run({ id });
+      return !exists;
     } catch {
       // On network/unexpected error, assume available to avoid blocking the user
       return true;

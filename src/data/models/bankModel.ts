@@ -3,7 +3,7 @@ import { Bank } from '@/domain/entities/Bank';
 export type BankModelConstructorParams = {
   id: string;
   name: string;
-  desription: string;
+  description: string;
   logo: string;
   date_release?: unknown;
   date_revision?: unknown;
@@ -35,7 +35,7 @@ export class BankModel {
 
   id: string;
   name: string;
-  desription: string;
+  description: string;
   logo: string;
   date_release?: unknown;
   date_revision?: unknown;
@@ -44,7 +44,7 @@ export class BankModel {
   constructor(params: BankModelConstructorParams) {
     this.id = params.id;
     this.name = params.name;
-    this.desription = params.desription;
+    this.description = params.description;
     this.logo = params.logo;
     this.date_release = params.date_release;
     this.date_revision = params.date_revision;
@@ -57,7 +57,7 @@ export class BankModel {
     return new BankModel({
       id: String(json?.id ?? ''),
       name: String(json?.name ?? ''),
-      desription: String(json?.desription ?? ''),
+      description: String(json?.description ?? ''),
       logo: String(json?.logo ?? ''),
       date_release: json?.date_release,
       date_revision: json?.date_revision,
@@ -70,7 +70,7 @@ export class BankModel {
     return {
       id: this.id,
       name: this.name,
-      desription: this.desription,
+      description: this.description,
       logo: this.logo,
       date_release: this.date_release ? toDate(this.date_release) : null,
       date_revision: this.date_revision ? toDate(this.date_revision) : null,
@@ -88,7 +88,7 @@ BankModel.prototype.toDomain = function toDomain(): Bank {
   return new Bank({
     id: this.id,
     name: this.name,
-    desription: this.desription,
+    description: this.description,
     logo: this.logo,
     date_release: this.date_release ? toDate(this.date_release) : undefined,
     date_revision: this.date_revision ? toDate(this.date_revision) : undefined,

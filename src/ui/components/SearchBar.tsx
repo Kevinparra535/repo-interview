@@ -24,13 +24,13 @@ const SearchBar = ({ viewModel }: Props) => {
       <View
         style={[
           styles.resultsBadge,
-          viewModel.filteredBanks.length === 0 && styles.resultsBadgeEmpty,
+          viewModel.filteredBanks?.length === 0 && styles.resultsBadgeEmpty,
         ]}
       >
         <Text style={styles.resultsBadgeText}>
-          {viewModel.filteredBanks.length === 1
+          {viewModel.filteredBanks?.length === 1
             ? '1 producto encontrado'
-            : `${viewModel.filteredBanks.length} productos encontrados`}
+            : `${viewModel.filteredBanks?.length ?? 0} productos encontrados`}
         </Text>
       </View>
     </View>

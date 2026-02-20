@@ -25,6 +25,10 @@ export class BankRepositoryImpl implements BankRepository {
     return model.toDomain();
   }
 
+  async verifyIdExists(id: string): Promise<boolean> {
+    return this.bankService.verifyIdExists(id);
+  }
+
   async create(bank: Bank): Promise<Bank> {
     const created = await this.bankService.create(BankModel.fromJson(bank));
     return created.toDomain();

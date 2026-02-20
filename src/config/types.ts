@@ -4,6 +4,7 @@ export const TYPES = {
   BankRepository: Symbol.for('BankRepository'),
   GetAllBankUseCase: Symbol.for('GetAllBankUseCase'),
   GetBankUseCase: Symbol.for('GetBankUseCase'),
+  VerifyBankIdUseCase: Symbol.for('VerifyBankIdUseCase'),
   CreateBankUseCase: Symbol.for('CreateBankUseCase'),
   UpdateBankUseCase: Symbol.for('UpdateBankUseCase'),
   DeleteBankUseCase: Symbol.for('DeleteBankUseCase'),

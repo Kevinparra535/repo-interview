@@ -10,7 +10,7 @@ export const bankProductSchema = z
   .object({
     id: z.string().min(3, 'Mínimo 3 caracteres').max(10, 'Máximo 10 caracteres'),
     name: z.string().min(5, 'Mínimo 5 caracteres').max(100, 'Máximo 100 caracteres'),
-    desription: z.string().min(10, 'Mínimo 10 caracteres').max(200, 'Máximo 200 caracteres'),
+    description: z.string().min(10, 'Mínimo 10 caracteres').max(200, 'Máximo 200 caracteres'),
     logo: z.string().min(1, 'Requerido'),
     date_release: z
       .date({ error: 'Fecha inválida' })

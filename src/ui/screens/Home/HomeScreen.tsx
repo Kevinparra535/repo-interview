@@ -21,10 +21,6 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const viewModel = useMemo(() => container.get<HomeViewModel>(TYPES.HomeViewModel), []);
 
-  useEffect(() => {
-    viewModel.load();
-  }, [viewModel]);
-
   const renderItem = ({ item, index }: { item: Bank; index: number }) => {
     const config = PRODUCT_CONFIGS[index % PRODUCT_CONFIGS.length];
 
@@ -34,14 +30,14 @@ const HomeScreen = () => {
         iconBgColor={config.iconBgColor}
         name={item.name}
         productId={item.id}
-        description={item.desription}
+        description={item.description}
         onPress={() => {}}
       />
     );
   };
 
   const renderEmptyState = () => {
-    if (viewModel.loading) {
+    if (viewModel.isBanksLoading) {
       return (
         <View style={styles.emptyContainer}>
           <ActivityIndicator size="large" color={Colors.bank.accent} />
@@ -61,6 +57,10 @@ const HomeScreen = () => {
       </View>
     );
   };
+
+  useEffect(() => {
+    viewModel.getAllBanks();
+  }, [viewModel]);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>

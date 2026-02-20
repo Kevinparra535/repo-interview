@@ -50,7 +50,7 @@ const AddProductScreen = observer(() => {
     defaultValues: {
       id: '',
       name: '',
-      desription: '',
+      description: '',
       logo: 'https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg',
       date_release: undefined as unknown as Date,
       date_revision: undefined as unknown as Date,
@@ -84,7 +84,7 @@ const AddProductScreen = observer(() => {
     const bank = new Bank({
       id: data.id,
       name: data.name,
-      desription: data.desription,
+      description: data.description,
       logo: data.logo,
       date_release: data.date_release,
       date_revision: data.date_revision,
@@ -166,7 +166,7 @@ const AddProductScreen = observer(() => {
 
             <Controller
               control={control}
-              name="desription"
+              name="description"
               render={({ field }) => (
                 <AppTextInput
                   label="Descripción"
@@ -174,7 +174,7 @@ const AddProductScreen = observer(() => {
                   value={field.value}
                   onChangeText={field.onChange}
                   onBlur={field.onBlur}
-                  error={errors.desription?.message}
+                  error={errors.description?.message}
                   maxLength={200}
                 />
               )}

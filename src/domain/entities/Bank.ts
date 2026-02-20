@@ -1,7 +1,7 @@
 export type BankConstructorParams = {
   id: string;
   name: string;
-  desription: string;
+  description: string;
   logo: string;
   date_release?: Date;
   date_revision?: Date;
@@ -14,7 +14,7 @@ export class Bank {
 
   id: string;
   name: string;
-  desription: string;
+  description: string;
   logo: string;
   date_release: Date;
   date_revision: Date;
@@ -23,7 +23,7 @@ export class Bank {
   constructor(params: BankConstructorParams) {
     this.id = params.id;
     this.name = params.name;
-    this.desription = params.desription;
+    this.description = params.description;
     this.logo = params.logo;
     this.date_release = params.date_release ?? new Date();
     this.date_revision = params.date_revision ?? new Date();
