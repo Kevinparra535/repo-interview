@@ -12,6 +12,15 @@ const buildBank = () =>
   });
 
 describe('ProductDetailViewModel', () => {
+  it('initialize delegates to getBank', () => {
+    const vm = new ProductDetailViewModel({ run: jest.fn() } as any, { run: jest.fn() } as any);
+    const spy = jest.spyOn(vm, 'getBank').mockResolvedValue();
+
+    vm.initialize('bank-1');
+
+    expect(spy).toHaveBeenCalledWith('bank-1');
+  });
+
   it('loads bank successfully', async () => {
     const bank = buildBank();
     const getBankUseCase = { run: jest.fn().mockResolvedValue(bank) };
@@ -56,5 +65,52 @@ describe('ProductDetailViewModel', () => {
 
     vm.consumeDeleteResult();
     expect(vm.isDeleteBankResponse).toBe(false);
+  });
+
+  it('sets not found error when bank is missing', async () => {
+    const vm = new ProductDetailViewModel(
+      { run: jest.fn().mockResolvedValue(null) } as any,
+      { run: jest.fn() } as any,
+    );
+
+    await vm.getBank('missing-id');
+
+    expect(vm.isBankResponse).toBeNull();
+    expect(vm.isBankError).toBeNull();
+    expect(vm.isLoaded).toBe(false);
+  });
+
+  it('sets bank error when getBank fails and reset restores initial state', async () => {
+    const vm = new ProductDetailViewModel(
+      { run: jest.fn().mockRejectedValue(new Error('fetch failed')) } as any,
+      { run: jest.fn() } as any,
+    );
+
+    await vm.getBank('bank-1');
+
+    expect(vm.isBankLoading).toBe(false);
+    expect(vm.isBankError).toContain('fetch failed');
+
+    vm.isDeleteBankResponse = true;
+    vm.reset();
+
+    expect(vm.isBankResponse).toBeNull();
+    expect(vm.isBankLoading).toBe(false);
+    expect(vm.isBankError).toBeNull();
+    expect(vm.isDeleteBankLoading).toBe(false);
+    expect(vm.isDeleteBankError).toBeNull();
+    expect(vm.isDeleteBankResponse).toBe(false);
+  });
+
+  it('reports isLoaded when a bank is available and not loading', async () => {
+    const bank = buildBank();
+    const vm = new ProductDetailViewModel(
+      { run: jest.fn().mockResolvedValue(bank) } as any,
+      { run: jest.fn() } as any,
+    );
+
+    await vm.getBank('bank-1');
+
+    expect(vm.isLoaded).toBe(true);
   });
 });

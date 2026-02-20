@@ -1,0 +1,8 @@
+beforeAll(() => {
+  jest.spyOn(console, 'error').mockImplementation(() => undefined);
+  jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+});
+
+afterAll(() => {
+  jest.restoreAllMocks();
+});

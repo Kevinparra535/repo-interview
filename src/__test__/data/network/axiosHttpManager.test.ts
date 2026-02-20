@@ -70,6 +70,14 @@ describe('AxiosHttpManager', () => {
     });
   });
 
+  it('success interceptor returns original response', () => {
+    const { responseUse } = createAxiosInstance();
+    const successInterceptor = responseUse.mock.calls[0][0] as <T>(response: T) => T;
+
+    const response = { data: { ok: true } };
+    expect(successInterceptor(response)).toBe(response);
+  });
+
   it('error interceptor maps api response error shape', async () => {
     const { responseUse } = createAxiosInstance();
     const errorInterceptor = responseUse.mock.calls[0][1] as (error: any) => Promise<unknown>;

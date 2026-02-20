@@ -21,6 +21,22 @@ const buildBanks = () => [
 ];
 
 describe('HomeViewModel', () => {
+  it('initialize triggers load only when not loaded and not loading', () => {
+    const getAllBankUseCase = { run: jest.fn().mockResolvedValue(buildBanks()) };
+    const vm = new HomeViewModel(getAllBankUseCase as any);
+
+    const spy = jest.spyOn(vm, 'getAllBanks').mockResolvedValue();
+
+    vm.initialize();
+    vm.isBanksLoading = true;
+    vm.initialize();
+    vm.isBanksLoading = false;
+    vm.isBanksResponse = buildBanks();
+    vm.initialize();
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
   it('loads banks successfully', async () => {
     const response = buildBanks();
     const getAllBankUseCase = { run: jest.fn().mockResolvedValue(response) };
@@ -61,6 +77,40 @@ describe('HomeViewModel', () => {
     expect(vm.filteredBanks).toHaveLength(1);
     expect(vm.filteredBanks[0].id).toBe('B2');
 
+    jest.useRealTimers();
+  });
+
+  it('clears debounced query when search is empty and hasBanks reflects no data', async () => {
+    jest.useFakeTimers();
+    const response = buildBanks();
+    const getAllBankUseCase = { run: jest.fn().mockResolvedValue(response) };
+    const vm = new HomeViewModel(getAllBankUseCase as any);
+
+    await vm.getAllBanks();
+    vm.setSearchQuery('A1');
+    jest.advanceTimersByTime(301);
+    expect(vm.filteredBanks).toHaveLength(1);
+
+    vm.setSearchQuery('   ');
+    expect(vm.filteredBanks).toHaveLength(2);
+
+    vm.isBanksResponse = [];
+    expect(vm.hasBanks).toBe(false);
+    jest.useRealTimers();
+  });
+
+  it('ignores stale debounced query updates', async () => {
+    jest.useFakeTimers();
+    const getAllBankUseCase = { run: jest.fn().mockResolvedValue(buildBanks()) };
+    const vm = new HomeViewModel(getAllBankUseCase as any);
+    await vm.getAllBanks();
+
+    vm.setSearchQuery('A1');
+    vm.setSearchQuery('B2');
+    jest.advanceTimersByTime(301);
+
+    expect(vm.filteredBanks).toHaveLength(1);
+    expect(vm.filteredBanks[0].id).toBe('B2');
     jest.useRealTimers();
   });
 });

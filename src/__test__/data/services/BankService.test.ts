@@ -37,6 +37,16 @@ describe('BankServiceImpl', () => {
     expect(result[0].id).toBe('bank-1');
   });
 
+  it('getAll also supports plain array responses', async () => {
+    const { service, httpManager } = makeService();
+    httpManager.get.mockResolvedValue([model.toJson()]);
+
+    const result = await service.getAll();
+
+    expect(result).toHaveLength(1);
+    expect(result[0].id).toBe('bank-1');
+  });
+
   it('getById returns model from plain response', async () => {
     const { service, httpManager } = makeService();
     httpManager.get.mockResolvedValue(model.toJson());
@@ -72,6 +82,18 @@ describe('BankServiceImpl', () => {
     expect(updated.id).toBe('bank-1');
   });
 
+  it('create and update also map plain responses', async () => {
+    const { service, httpManager } = makeService();
+    httpManager.post.mockResolvedValue(model.toJson());
+    httpManager.put.mockResolvedValue(model.toJson());
+
+    const created = await service.create(model);
+    const updated = await service.update('bank-1', model);
+
+    expect(created.id).toBe('bank-1');
+    expect(updated.id).toBe('bank-1');
+  });
+
   it('delete delegates to http manager', async () => {
     const { service, httpManager } = makeService();
     httpManager.delete.mockResolvedValue(undefined);
@@ -86,5 +108,28 @@ describe('BankServiceImpl', () => {
     httpManager.get.mockRejectedValue({ message: 'network exploded', statusCode: 500 });
 
     await expect(service.getAll()).rejects.toThrow('network exploded');
+  });
+
+  it('normalizes native Error instances', async () => {
+    const { service, httpManager } = makeService();
+    httpManager.get.mockRejectedValue(new Error('native error'));
+
+    await expect(service.getById('bank-1')).rejects.toThrow('native error');
+  });
+
+  it('normalizes unknown values via String conversion', async () => {
+    const { service, httpManager } = makeService();
+    httpManager.put.mockRejectedValue(404);
+
+    await expect(service.update('bank-1', model)).rejects.toThrow('404');
+  });
+
+  it('handles failures on verify and delete paths', async () => {
+    const { service, httpManager } = makeService();
+    httpManager.get.mockRejectedValueOnce({ message: 'verify failed' });
+    httpManager.delete.mockRejectedValueOnce({ message: 'delete failed' });
+
+    await expect(service.verifyIdExists('bank-1')).rejects.toThrow('verify failed');
+    await expect(service.delete('bank-1')).rejects.toThrow('delete failed');
   });
 });
