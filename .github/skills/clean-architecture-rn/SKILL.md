@@ -21,6 +21,8 @@ Use this skill whenever you:
 - UseCases depend on domain contracts (interfaces), not data implementations.
 - Data layer implements repositories/services and talks to Firebase/network.
 - Keep domain layer free of framework/infrastructure.
+- ViewModel MUST be UI-agnostic: no React hooks, no navigation calls, no Alert/toast/snackbar APIs, no component imports.
+- UI screens should stay thin: bind inputs, call VM actions, and render VM state.
 
 ## SOLID requirements (must apply)
 
@@ -129,6 +131,18 @@ When adding a new module:
 - Keep state as fields; actions as methods; computed as getters
 - Prefer `reaction(...)` for autosave side effects (with debounce)
 - Never put direct Firebase calls in UI components—only in VM via UseCases
+- Keep business flow decisions in VM (create vs update, initialize/load, mapping form values to domain entities)
+- UI should not contain branching business flow beyond simple event wiring (`onPress`, `onChange`, `useEffect` bridge)
+
+### ViewModel naming standard (mandatory)
+
+- For every async responsibility, use grouped and explicit names:
+   - `isCreate<Entity>Loading / isCreate<Entity>Error / isCreate<Entity>Response`
+   - `is<Entity>Loading / is<Entity>Error / is<Entity>Response`
+   - `isUpdate<Entity>Loading / isUpdate<Entity>Error / isUpdate<Entity>Response`
+- `ICalls` can remain operation-centered (`'loadBank' | 'createBank' | 'updateBank'`), but public state naming should prioritize readability and direct responsibility.
+- If the screen needs form defaults for edit mode, expose a VM getter (e.g. `formValues`) instead of composing values in UI.
+- `reset()` must clear transient UI-facing VM state (loading/error/success flags), while preserving persisted domain state only if intended.
 
 ## Unit testing requirements (must apply)
 

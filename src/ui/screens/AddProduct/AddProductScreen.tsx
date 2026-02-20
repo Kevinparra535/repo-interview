@@ -17,7 +17,15 @@ import { zodResolver } from '@/ui/validators/zodResolver';
 import { AddProductViewModel } from './AddProductViewModel';
 import styles from './styles';
 
-const AddProductScreen = observer(() => {
+type Props = {
+  route: {
+    params: {
+      bankId?: string;
+    };
+  };
+};
+
+const AddProductScreen = ({ route }: Props) => {
   const viewModel = useMemo(
     () => container.get<AddProductViewModel>(TYPES.AddProductViewModel),
     [],
@@ -44,8 +52,7 @@ const AddProductScreen = observer(() => {
   });
 
   const onSubmit = handleSubmit(async (values) => {
-    const newData = { ...values };
-    viewModel.sendData(newData);
+    await viewModel.submit(values);
   });
 
   const handleSavePress = useCallback(() => {
@@ -53,12 +60,21 @@ const AddProductScreen = observer(() => {
   }, [onSubmit]);
 
   useEffect(() => {
-    if (viewModel.isCreateBankResponse) {
-      Alert.alert('Éxito', 'El producto bancario ha sido creado exitosamente.');
+    if (viewModel.submitSuccessMessage) {
+      Alert.alert('Éxito', viewModel.submitSuccessMessage);
+      viewModel.consumeSubmitResult();
       reset();
       navigation.goBack();
     }
-  }, [navigation, reset, viewModel.isCreateBankResponse]);
+  }, [navigation, reset, viewModel.submitSuccessMessage, viewModel]);
+
+  useEffect(() => {
+    void viewModel.initialize(route.params?.bankId);
+  }, [route.params?.bankId, viewModel]);
+
+  useEffect(() => {
+    reset(viewModel.formValues);
+  }, [reset, viewModel.formValues]);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
@@ -173,9 +189,9 @@ const AddProductScreen = observer(() => {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      {viewModel.isCreateBankError ? (
+      {viewModel.submitError ? (
         <View style={styles.errorBanner}>
-          <Text style={styles.errorBannerText}>{viewModel.isCreateBankError}</Text>
+          <Text style={styles.errorBannerText}>{viewModel.submitError}</Text>
         </View>
       ) : null}
 
@@ -190,7 +206,7 @@ const AddProductScreen = observer(() => {
         <PrimaryButton
           label="Enviar"
           onPress={handleSavePress}
-          loading={viewModel.isCreateBankLoading}
+          loading={viewModel.isSubmitLoading}
           style={styles.actionBtn}
           height={48}
           borderRadius={12}
@@ -198,6 +214,6 @@ const AddProductScreen = observer(() => {
       </View>
     </SafeAreaView>
   );
-});
+};
 
-export default AddProductScreen;
+export default observer(AddProductScreen);

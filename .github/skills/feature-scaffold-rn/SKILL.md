@@ -74,6 +74,8 @@ If user didn’t specify, assume:
 - Data layer implements contracts and calls service/network
 - Keep manager details isolated in service/network adapters (Axios, Firebase, GraphQL, etc.)
 - Map transport models to domain entities (don’t leak manager-specific shapes to domain/UI)
+- ViewModel must remain UI-agnostic (no navigation APIs, no Alert/toast APIs, no React hooks)
+- Keep screen logic minimal: bind fields, call VM methods, render VM state/errors/loading
 
 ### Entity and model structure (mandatory)
 
@@ -170,6 +172,17 @@ All ViewModels in this project follow the pattern established in `HomeViewModel`
 6. `private handleError(error: unknown, type: ICalls)`: formats the error message, calls `this.logger.error()`, then delegates to `updateLoadingState(false, message, type)`.
 7. **All mutations after `await`** (i.e., setting domain data from the response) must be wrapped in `runInAction(() => { ... })`.
 8. `reset()` must also wrap all field resets in `runInAction`.
+9. ViewModel must expose explicit entrypoint methods for screen flows, e.g. `initialize(routeParam?)`, `submit(formValues)`, `consumeResult()`.
+10. UI should not decide create-vs-update flow; VM handles operation mode and branching.
+
+### ViewModel naming rules (mandatory)
+
+- State names must be explicit by responsibility (preferred):
+  - `isCreate<Entity>Loading / isCreate<Entity>Error / isCreate<Entity>Response`
+  - `is<Entity>Loading / is<Entity>Error / is<Entity>Response`
+  - `isUpdate<Entity>Loading / isUpdate<Entity>Error / isUpdate<Entity>Response`
+- `ICalls` can remain operation-centered internally (e.g., `'loadBank'`, `'createBank'`, `'updateBank'`), but public VM state should prioritize direct readability.
+- Prefer VM getters for UI hydration (e.g. `formValues`) to avoid mapping/transformation logic in screen code.
 
 ### Canonical ViewModel template
 

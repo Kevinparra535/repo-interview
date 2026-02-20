@@ -31,6 +31,10 @@ description: Review a PR or changeset to ensure Kevin’s Clean Architecture (RN
 - [ ] Actions / computed are clear
 - [ ] Side effects use `reaction` with debounce when needed
 - [ ] Error & loading states handled
+- [ ] ViewModel is UI-agnostic (no navigation/Alert/toast/hooks/components)
+- [ ] Async state naming is explicit by responsibility (`isCreateXLoading`, `isXResponse`, `isUpdateXError`, etc.)
+- [ ] Screen keeps minimal logic (no create-vs-update business branching in UI)
+- [ ] Form hydration/transformation logic lives in VM (e.g. `formValues` getter)
 
 ## Testing / QA
 
