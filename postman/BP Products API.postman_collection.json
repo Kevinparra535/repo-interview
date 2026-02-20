@@ -30,6 +30,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"dos\",\n  \"name\": \"Nombre producto\",\n  \"description\": \"Descripción producto\",\n  \"logo\": \"https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg\",\n  \"date_release\": \"2025-01-01\",\n  \"date_revision\": \"2025-01-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{BASE_URL}}/bp/products",
 					"host": [
@@ -48,6 +57,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"dos\",\n  \"name\": \"Nombre producto\",\n  \"description\": \"Descripción producto\",\n  \"logo\": \"https://www.visa.com.ec/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/Tarjetas/visa-signature-400x225.jpg\",\n  \"date_release\": \"2025-01-01\",\n  \"date_revision\": \"2025-01-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{BASE_URL}}/bp/products/:id",
 					"host": [
