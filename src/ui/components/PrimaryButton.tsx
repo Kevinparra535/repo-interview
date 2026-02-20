@@ -16,9 +16,17 @@ import { ms } from '@/ui/styles/FontsScale';
 import Shadows from '@/ui/styles/Shadows';
 import Spacings from '@/ui/styles/Spacings';
 
+type Variant = 'accent' | 'destructive';
+
 type Props = {
   label: string;
   onPress: () => void;
+  /**
+   * Button color variant.
+   * - `accent` (default): blue gradient `#2D7EF8 → #1A5FCC`
+   * - `destructive`: red gradient `#E53935 → #C62828`
+   */
+  variant?: Variant;
   /** Optional leading Ionicons icon */
   iconName?: keyof typeof Ionicons.glyphMap;
   loading?: boolean;
@@ -31,9 +39,20 @@ type Props = {
   height?: number;
 };
 
+const VARIANT_GRADIENT: Record<Variant, [string, string]> = {
+  accent: [Colors.base.accentGradientStart, Colors.base.accentGradientEnd],
+  destructive: ['#E53935', '#C62828'],
+};
+
+const VARIANT_SHADOW: Record<Variant, object> = {
+  accent: Shadows.bankButton,
+  destructive: Shadows.destructiveButton,
+};
+
 const PrimaryButton = ({
   label,
   onPress,
+  variant = 'accent',
   iconName,
   loading = false,
   disabled = false,
@@ -43,16 +62,23 @@ const PrimaryButton = ({
 }: Props) => {
   const radius = borderRadiusProp ?? BorderRadius.pill;
   const btnHeight = heightProp ?? 52;
+  const [gradientStart, gradientEnd] = VARIANT_GRADIENT[variant];
 
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPress}
       disabled={disabled || loading}
-      style={[styles.wrapper, disabled && styles.wrapperDisabled, { borderRadius: radius }, style]}
+      style={[
+        styles.wrapper,
+        VARIANT_SHADOW[variant],
+        disabled && styles.wrapperDisabled,
+        { borderRadius: radius },
+        style,
+      ]}
     >
       <GradientView
-        preset="accent"
+        colors={[gradientStart, gradientEnd]}
         style={[
           styles.gradient,
           disabled && styles.gradientDisabled,
@@ -78,7 +104,6 @@ const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
     borderRadius: BorderRadius.pill,
-    ...Shadows.bankButton,
   },
 
   wrapperDisabled: {

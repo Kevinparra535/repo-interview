@@ -57,6 +57,24 @@ const Shadows = {
     shadowRadius: 12,
     elevation: 6,
   },
+
+  destructiveButton: {
+    // Pencil DS: color #E5393555 (opacity≈0.33), blur:16, y:4
+    shadowColor: '#E53935',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.33,
+    shadowRadius: 16,
+    elevation: 8,
+  },
+
+  logoGlow: {
+    // Pencil DS Product Detail hero: color #2D7EF855 blur:32
+    shadowColor: '#2D7EF8',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.33,
+    shadowRadius: 32,
+    elevation: 12,
+  },
 };
 
 export default Shadows;

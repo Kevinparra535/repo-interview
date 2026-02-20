@@ -156,15 +156,162 @@ declare module './<entityModel>' {
 
 ---
 
-## ViewModel template (minimum)
+## ViewModel standard (canonical pattern)
 
-- `loading`, `error`, `items` state
-- `load()` action
-- `create/update/delete` actions calling use cases
-- computed getters for derived data
-- optional `reaction` for autosave/sync with debounce
+All ViewModels in this project follow the pattern established in `HomeViewModel`. Deviating from it is not allowed.
+
+### Structure rules
+
+1. `@injectable()` decorator + `makeAutoObservable(this)` in constructor.
+2. State fields grouped by concern (one group per async call type).
+3. A `private logger = new Logger('<ViewModelName>')` for consistent error logging.
+4. A `type ICalls = 'callA' | 'callB'` union that names every async operation.
+5. `private updateLoadingState(isLoading, error, type: ICalls)`: wraps all loading/error field assignments inside `runInAction` + a `switch` on `type`. **Never mutate loading/error fields directly** outside this method.
+6. `private handleError(error: unknown, type: ICalls)`: formats the error message, calls `this.logger.error()`, then delegates to `updateLoadingState(false, message, type)`.
+7. **All mutations after `await`** (i.e., setting domain data from the response) must be wrapped in `runInAction(() => { ... })`.
+8. `reset()` must also wrap all field resets in `runInAction`.
+
+### Canonical ViewModel template
+
+```ts
+import { inject, injectable } from 'inversify';
+import { makeAutoObservable, runInAction } from 'mobx';
+
+import { TYPES } from '@/config/types';
+import { <Entity> } from '@/domain/entities/<Entity>';
+import { GetAll<Entity>UseCase } from '@/domain/useCases/GetAll<Entity>UseCase';
+import Logger from '@/ui/utils/Logger';
+
+type ICalls = 'items' | 'create' | 'update' | 'delete';
+
+@injectable()
+export class <Feature>ViewModel {
+  // ── State ─────────────────────────────────────────────────────────────────
+  isItemsLoading: boolean = false;
+  isItemsError: string | null = null;
+  isItemsResponse: <Entity>[] | null = null;
+
+  isSubmitting: boolean = false;
+  isSubmitError: string | null = null;
+
+  private logger = new Logger('<Feature>ViewModel');
+
+  constructor(
+    @inject(TYPES.GetAll<Entity>UseCase)
+    private readonly getAll<Entity>UseCase: GetAll<Entity>UseCase,
+  ) {
+    makeAutoObservable(this);
+  }
+
+  // ── Computed ──────────────────────────────────────────────────────────────
+
+  get isLoaded(): boolean {
+    return !this.isItemsLoading && this.isItemsResponse !== null;
+  }
+
+  // ── Actions ───────────────────────────────────────────────────────────────
+
+  async loadAll(): Promise<void> {
+    this.updateLoadingState(true, null, 'items');
+    try {
+      const response = await this.getAll<Entity>UseCase.run();
+      runInAction(() => {
+        this.isItemsResponse = response;
+      });
+      this.updateLoadingState(false, null, 'items');
+    } catch (error) {
+      this.handleError(error, 'items');
+    }
+  }
+
+  async create(data: <Entity>): Promise<boolean> {
+    this.updateLoadingState(true, null, 'create');
+    try {
+      await this.create<Entity>UseCase.run(data);
+      this.updateLoadingState(false, null, 'create');
+      return true;
+    } catch (error) {
+      this.handleError(error, 'create');
+      return false;
+    }
+  }
+
+  reset(): void {
+    runInAction(() => {
+      this.isItemsResponse = null;
+      this.isItemsLoading = false;
+      this.isItemsError = null;
+      this.isSubmitting = false;
+      this.isSubmitError = null;
+    });
+  }
+
+  // ── Private helpers ───────────────────────────────────────────────────────
+
+  private updateLoadingState(isLoading: boolean, error: string | null, type: ICalls) {
+    runInAction(() => {
+      switch (type) {
+        case 'items':
+          this.isItemsLoading = isLoading;
+          this.isItemsError = error;
+          break;
+        case 'create':
+        case 'update':
+        case 'delete':
+          this.isSubmitting = isLoading;
+          this.isSubmitError = error;
+          break;
+      }
+    });
+  }
+
+  private handleError(error: unknown, type: ICalls) {
+    const errorMessage = `Error in ${type}: ${
+      error instanceof Error ? error.message : String(error)
+    }`;
+    this.logger.error(errorMessage);
+    this.updateLoadingState(false, errorMessage, type);
+  }
+}
+```
+
+### Screen pattern (observer + container.get)
+
+```tsx
+import { observer } from 'mobx-react-lite';
+import { useEffect, useMemo } from 'react';
+import { container } from '@/config/di';
+import { TYPES } from '@/config/types';
+import { <Feature>ViewModel } from './<Feature>ViewModel';
+
+const <Feature>Screen = observer(() => {
+  // VM instantiation — always useMemo with empty deps (transient scope)
+  const viewModel = useMemo(
+    () => container.get<<Feature>ViewModel>(TYPES.<Feature>ViewModel),
+    [],
+  );
+
+  // Side effects (data loading) — always useEffect, never useMemo
+  useEffect(() => {
+    viewModel.loadAll();
+  }, [viewModel]);
+
+  // ...render
+});
+```
+
+### Rules summary
+
+| Rule | Correct | Wrong |
+|------|---------|-------|
+| Instantiate VM | `useMemo(() => container.get(...), [])` | `new ViewModel()` in component body |
+| Trigger side effects | `useEffect(() => { vm.load() }, [vm])` | `useMemo(() => { vm.load() }, [...])` |
+| Mutate after `await` | `runInAction(() => { this.x = val })` | `this.x = val` directly after await |
+| Log + set error | `handleError(e, type)` | Inline `this.error = e.message` |
+| Set loading/error | `updateLoadingState(bool, msg, type)` | Direct field assignment scattered through action |
 
 ---
+
 
 ## DI checklist (must do)
 

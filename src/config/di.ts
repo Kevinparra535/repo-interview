@@ -13,6 +13,7 @@ import { VerifyBankIdUseCase } from '@/domain/useCases/VerifyBankIdUseCase';
 import { AddProductViewModel } from '@/ui/screens/AddProduct/AddProductViewModel';
 import { HomeViewModel } from '@/ui/screens/Home/HomeViewModel';
 import { NotFoundViewModel } from '@/ui/screens/NotFound/NotFoundViewModel';
+import { ProductDetailViewModel } from '@/ui/screens/ProductDetail/ProductDetailViewModel';
 
 import { TYPES } from './types';
 
@@ -32,5 +33,6 @@ container.bind<DeleteBankUseCase>(TYPES.DeleteBankUseCase).to(DeleteBankUseCase)
 container.bind<HomeViewModel>(TYPES.HomeViewModel).to(HomeViewModel);
 container.bind<NotFoundViewModel>(TYPES.NotFoundViewModel).to(NotFoundViewModel);
 container.bind<AddProductViewModel>(TYPES.AddProductViewModel).to(AddProductViewModel);
+container.bind<ProductDetailViewModel>(TYPES.ProductDetailViewModel).to(ProductDetailViewModel);
 
 export { container };

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AddProductScreen from '../screens/AddProduct/AddProductScreen';
 import HomeScreen from '../screens/Home/HomeScreen';
 import { NotFoundScreen } from '../screens/NotFound/NotFoundScreen';
+import ProductDetailScreen from '../screens/ProductDetail/ProductDetailScreen';
 
 const RootStack = createNativeStackNavigator({
   screens: {
@@ -15,6 +16,12 @@ const RootStack = createNativeStackNavigator({
     },
     AddProduct: {
       screen: AddProductScreen,
+      options: {
+        headerShown: false,
+      },
+    },
+    ProductDetail: {
+      screen: ProductDetailScreen,
       options: {
         headerShown: false,
       },

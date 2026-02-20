@@ -6,7 +6,7 @@ import Colors from '@/ui/styles/Colors';
 // ---------------------------------------------------------------------------
 // Built-in presets matching the Pencil design tokens
 // ---------------------------------------------------------------------------
-export type GradientPreset = 'header' | 'accent';
+export type GradientPreset = 'header' | 'accent' | 'detailHero';
 
 const GRADIENT_PRESETS: Record<
   GradientPreset,
@@ -21,6 +21,12 @@ const GRADIENT_PRESETS: Record<
   /** Light-accent → dark-accent — used for primary action buttons */
   accent: {
     colors: [Colors.base.accentGradientStart, Colors.base.accentGradientEnd],
+    start: { x: 0, y: 0 },
+    end: { x: 0, y: 1 },
+  },
+  /** Navy → deep-blue — used for Product Detail hero header (#0A1628 → #1A3A70) */
+  detailHero: {
+    colors: [Colors.base.bgPrimary, '#1A3A70'],
     start: { x: 0, y: 0 },
     end: { x: 0, y: 1 },
   },

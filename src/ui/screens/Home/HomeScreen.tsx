@@ -31,7 +31,7 @@ const HomeScreen = () => {
         name={item.name}
         productId={item.id}
         description={item.description}
-        onPress={() => {}}
+        onPress={() => (navigation as any).navigate('ProductDetail', { bankId: item.id })}
       />
     );
   };

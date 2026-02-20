@@ -262,7 +262,30 @@
               "type": "ref",
               "ref": "k8cgH",
               "width": "fill_container",
-              "name": "card1"
+              "name": "card1",
+              "descendants": {
+                "u0ubp": {
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 135,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#2D7EF8",
+                        "position": 0
+                      },
+                      {
+                        "color": "#5B9BF9",
+                        "position": 1
+                      }
+                    ]
+                  }
+                }
+              }
             },
             {
               "id": "nUtQj",
@@ -292,8 +315,8 @@
                     ]
                   }
                 },
-                "Ia7kB": {
-                  "iconFontName": "wallet"
+                "H0me4": {
+                  "iconFontName": "credit-card"
                 },
                 "T6UW4": {
                   "content": "Tarjeta de Crédito"
@@ -334,7 +357,7 @@
                     ]
                   }
                 },
-                "Ia7kB": {
+                "H0me4": {
                   "iconFontName": "banknote"
                 },
                 "T6UW4": {
@@ -376,7 +399,7 @@
                     ]
                   }
                 },
-                "Ia7kB": {
+                "H0me4": {
                   "iconFontName": "shield"
                 },
                 "T6UW4": {
@@ -532,6 +555,12 @@
               "type": "frame",
               "id": "u0ubp",
               "name": "Logo",
+              "metadata": {
+                "type": "unsplash",
+                "username": "martzzl",
+                "link": "https://unsplash.com/@martzzl",
+                "author": "Marcel Strauß"
+              },
               "width": 56,
               "height": 56,
               "fill": {
@@ -560,7 +589,7 @@
               "children": [
                 {
                   "type": "icon_font",
-                  "id": "Ia7kB",
+                  "id": "H0me4",
                   "name": "cardLogoIcon",
                   "width": 28,
                   "height": 28,
@@ -1213,6 +1242,12 @@
                   "type": "frame",
                   "id": "VJjNc",
                   "name": "Logo Card",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "loganvoss",
+                    "link": "https://unsplash.com/@loganvoss",
+                    "author": "Logan Voss"
+                  },
                   "width": 80,
                   "height": 80,
                   "fill": "#FFFFFF",
@@ -1233,7 +1268,7 @@
                   "children": [
                     {
                       "type": "icon_font",
-                      "id": "F0Uh6",
+                      "id": "M2YiO",
                       "name": "logoIcon",
                       "width": 36,
                       "height": 36,
@@ -1518,6 +1553,12 @@
                           "type": "frame",
                           "id": "LYI4x",
                           "name": "row4Thumb",
+                          "metadata": {
+                            "type": "unsplash",
+                            "username": "mmpixz",
+                            "link": "https://unsplash.com/@mmpixz",
+                            "author": "Amir Hosseini"
+                          },
                           "width": 28,
                           "height": 28,
                           "fill": {
@@ -7964,7 +8005,30 @@
                       "type": "ref",
                       "ref": "k8cgH",
                       "width": 361,
-                      "name": "pc1"
+                      "name": "pc1",
+                      "descendants": {
+                        "u0ubp": {
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 135,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#2D7EF8",
+                                "position": 0
+                              },
+                              {
+                                "color": "#5B9BF9",
+                                "position": 1
+                              }
+                            ]
+                          }
+                        }
+                      }
                     },
                     {
                       "id": "4goyQ",
@@ -7973,7 +8037,28 @@
                       "width": 361,
                       "name": "pc2",
                       "descendants": {
-                        "Ia7kB": {
+                        "u0ubp": {
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 135,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#2D7EF8",
+                                "position": 0
+                              },
+                              {
+                                "color": "#5B9BF9",
+                                "position": 1
+                              }
+                            ]
+                          }
+                        },
+                        "H0me4": {
                           "iconFontName": "wallet"
                         },
                         "T6UW4": {
@@ -9048,7 +9133,30 @@
                                       "type": "ref",
                                       "ref": "k8cgH",
                                       "width": "fill_container",
-                                      "name": "plCard1"
+                                      "name": "plCard1",
+                                      "descendants": {
+                                        "u0ubp": {
+                                          "fill": {
+                                            "type": "gradient",
+                                            "gradientType": "linear",
+                                            "enabled": true,
+                                            "rotation": 135,
+                                            "size": {
+                                              "height": 1
+                                            },
+                                            "colors": [
+                                              {
+                                                "color": "#2D7EF8",
+                                                "position": 0
+                                              },
+                                              {
+                                                "color": "#5B9BF9",
+                                                "position": 1
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      }
                                     },
                                     {
                                       "id": "kv16L",
@@ -9057,7 +9165,28 @@
                                       "width": "fill_container",
                                       "name": "plCard2",
                                       "descendants": {
-                                        "Ia7kB": {
+                                        "u0ubp": {
+                                          "fill": {
+                                            "type": "gradient",
+                                            "gradientType": "linear",
+                                            "enabled": true,
+                                            "rotation": 135,
+                                            "size": {
+                                              "height": 1
+                                            },
+                                            "colors": [
+                                              {
+                                                "color": "#2D7EF8",
+                                                "position": 0
+                                              },
+                                              {
+                                                "color": "#5B9BF9",
+                                                "position": 1
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        "H0me4": {
                                           "iconFontName": "wallet"
                                         },
                                         "T6UW4": {
@@ -9078,7 +9207,28 @@
                                       "width": "fill_container",
                                       "name": "plCard3",
                                       "descendants": {
-                                        "Ia7kB": {
+                                        "u0ubp": {
+                                          "fill": {
+                                            "type": "gradient",
+                                            "gradientType": "linear",
+                                            "enabled": true,
+                                            "rotation": 135,
+                                            "size": {
+                                              "height": 1
+                                            },
+                                            "colors": [
+                                              {
+                                                "color": "#2D7EF8",
+                                                "position": 0
+                                              },
+                                              {
+                                                "color": "#5B9BF9",
+                                                "position": 1
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        "H0me4": {
                                           "iconFontName": "shield"
                                         },
                                         "T6UW4": {
@@ -9517,6 +9667,12 @@
                               "type": "frame",
                               "id": "woIWs",
                               "name": "detailLogoBg",
+                              "metadata": {
+                                "type": "unsplash",
+                                "username": "fachrizalm",
+                                "link": "https://unsplash.com/@fachrizalm",
+                                "author": "Fachrizal Maulana"
+                              },
                               "width": 72,
                               "height": 72,
                               "fill": {
@@ -9555,7 +9711,7 @@
                               "children": [
                                 {
                                   "type": "icon_font",
-                                  "id": "DlAmn",
+                                  "id": "Uh0XZ",
                                   "name": "detailLogoIcon",
                                   "width": 36,
                                   "height": 36,

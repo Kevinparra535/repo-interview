@@ -11,4 +11,5 @@ export const TYPES = {
   HomeViewModel: Symbol.for('HomeViewModel'),
   NotFoundViewModel: Symbol.for('NotFoundViewModel'),
   AddProductViewModel: Symbol.for('AddProductViewModel'),
+  ProductDetailViewModel: Symbol.for('ProductDetailViewModel'),
 } as const;
