@@ -6,9 +6,11 @@ import { hexToRgba } from '@/ui/utils/colorUtils';
 const WHITE = '#FFFFFF';
 const DARK_NAVY = '#0A1628';
 const DEEP_BLUE = '#1A2F5E';
-const ACCENT_BLUE = '#2D7EF8';
-const ACCENT_BLUE_LIGHT = '#3D8EF8';
-const ACCENT_BLUE_DARK = '#1A6FE8';
+const ACCENT_BLUE = '#2D7EF8';          // Primary accent — also gradient start
+const ACCENT_BLUE_DARK = '#1A5FCC';    // Gradient end (Pencil DS: #1A5FCC)
+const INPUT_BG = '#1C2E4A';           // Input / surface background
+const ERROR_RED = '#FF5252';           // Error colour (Pencil DS)
+const SUCCESS_GREEN = '#00C853';       // Success colour (Pencil DS)
 
 // ---------------------------------------------------------------------------
 // Base palette — composed using hexToRgba; no raw rgba() strings
@@ -24,10 +26,16 @@ const base = {
 
   // Accent
   accent: ACCENT_BLUE,
-  accentGradientStart: ACCENT_BLUE_LIGHT,
-  accentGradientEnd: ACCENT_BLUE_DARK,
+  accentGradientStart: ACCENT_BLUE,       // #2D7EF8 — Pencil DS gradient start
+  accentGradientEnd: ACCENT_BLUE_DARK,    // #1A5FCC — Pencil DS gradient end
   accentDim: hexToRgba(ACCENT_BLUE, 0.12),
   accentDimBorder: hexToRgba(ACCENT_BLUE, 0.31),
+
+  // Input fields
+  inputBg: INPUT_BG,
+  inputBorder: hexToRgba(WHITE, 0.1),           // #FFFFFF1A — Pencil DS default border
+  inputErrorBorder: ERROR_RED,                  // #FF5252
+  inputSuccessBorder: SUCCESS_GREEN,            // #00C853
 
   // Borders / separators
   cardBorder: hexToRgba(WHITE, 0.1),
@@ -84,7 +92,7 @@ const Colors = {
   // Keep existing alert colors (not part of brand system)
   alerts: {
     check: '#4eaf0d',
-    error: '#E74446',
+    error: ERROR_RED,        // #FF5252 — aligned with Pencil DS
     warning: '#FF8740',
     softNegative: '#E57373',
   },

@@ -244,7 +244,7 @@ const AddProductScreen = observer(() => {
       <View style={styles.actionRow}>
         <SecondaryButton
           label="Reiniciar"
-          variant="ghost"
+          variant="outlined"
           onPress={handleReset}
           style={[styles.actionBtn, { height: 48 }]}
           borderRadius={12}

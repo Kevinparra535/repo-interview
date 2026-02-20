@@ -5,6 +5,7 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import BorderRadius from '@/ui/styles/BorderRadius';
 import Colors from '@/ui/styles/Colors';
 import Fonts from '@/ui/styles/Fonts';
+import Shadows from '@/ui/styles/Shadows';
 import Spacings from '@/ui/styles/Spacings';
 
 type Props = {
@@ -79,7 +80,14 @@ const AppDateInput = ({ value, onChangeDate, onBlur, label, error, placeholder }
     <View style={styles.fieldWrapper}>
       {label ? <Text style={styles.label}>{label}</Text> : null}
 
-      <View style={[styles.inputBar, error ? styles.inputBarError : null]}>
+      <View style={[
+        styles.inputBar,
+        error
+          ? { borderWidth: 1.5, borderColor: Colors.base.inputErrorBorder, ...Shadows.inputError }
+          : focused
+          ? { borderWidth: 2, borderColor: Colors.base.accent, ...Shadows.inputFocus }
+          : { borderWidth: 1, borderColor: Colors.base.inputBorder },
+      ]}>
         <TextInput
           style={styles.input}
           value={localText}
@@ -127,15 +135,12 @@ const styles = StyleSheet.create({
     gap: Spacings.xs,
     width: '100%',
     height: 48,
-    backgroundColor: Colors.base.bgSearchBar,
+    // Pencil DS: fill #1C2E4A, cornerRadius 12
+    backgroundColor: Colors.base.inputBg,
     borderRadius: BorderRadius.sm,
-    borderWidth: 1,
-    borderColor: Colors.base.bgSearchBarBorder,
   },
 
-  inputBarError: {
-    borderColor: Colors.alerts.error,
-  },
+  // Removed: inputBarError — handled inline with dynamic state above
 
   input: {
     flex: 1,

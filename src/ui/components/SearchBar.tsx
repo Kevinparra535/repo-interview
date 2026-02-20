@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -12,13 +13,15 @@ type Props = {
 };
 
 const SearchBar = ({ viewModel }: Props) => {
+  const handleChangeText = (text: string) => viewModel.setSearchQuery(text);
+
   return (
     <View style={styles.searchSection}>
       <AppTextInput
         variant="search"
         placeholder="Buscar producto..."
         value={viewModel.searchQuery}
-        onChangeText={(text) => viewModel.setSearchQuery(text)}
+        onChangeText={handleChangeText}
         returnKeyType="search"
       />
       <View
@@ -37,7 +40,7 @@ const SearchBar = ({ viewModel }: Props) => {
   );
 };
 
-export default SearchBar;
+export default observer(SearchBar);
 
 const styles = StyleSheet.create({
   searchSection: {

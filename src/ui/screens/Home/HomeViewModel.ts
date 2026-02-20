@@ -17,6 +17,7 @@ export class HomeViewModel {
   private logger = new Logger('HomeViewModel');
 
   @observable public searchQuery = '';
+  @observable private debouncedSearchQuery = '';
 
   constructor(
     @inject(TYPES.GetAllBankUseCase) private readonly getAllBankUseCase: GetAllBankUseCase,
@@ -24,21 +25,9 @@ export class HomeViewModel {
     makeAutoObservable(this);
   }
 
-  public async searchTraces(query: string): Promise<void> {
-    const fun = debounce(async (newQuery: string) => {
-      try {
-        console.log(newQuery);
-      } catch (error) {
-        console.log('HomeViewModel.searchTraces.error:', error);
-      }
-    }, 1000);
-
-    fun(query);
-  }
-
   get filteredBanks() {
-    if (!this.searchQuery.trim()) return this.isBanksResponse;
-    const q = this.searchQuery.toLowerCase();
+    if (!this.debouncedSearchQuery.trim()) return this.isBanksResponse;
+    const q = this.debouncedSearchQuery.toLowerCase();
 
     return this.isBanksResponse?.filter(
       (b) =>
@@ -48,11 +37,18 @@ export class HomeViewModel {
     );
   }
 
-  setSearchQuery(query: string) {
+  public setSearchQuery(query: string) {
     this.searchQuery = query;
+
+    if (!query.trim()) {
+      this.debouncedSearchQuery = '';
+      return;
+    }
+
+    this.applyDebouncedSearch(query);
   }
 
-  async getAllBanks() {
+  public async getAllBanks() {
     this.updateLoadingState(true, null, 'banks');
 
     try {
@@ -67,6 +63,15 @@ export class HomeViewModel {
       this.handleError(error, 'banks');
     }
   }
+
+  // utils
+  private readonly applyDebouncedSearch = debounce((query: string) => {
+    if (query !== this.searchQuery) return;
+
+    runInAction(() => {
+      this.debouncedSearchQuery = query;
+    });
+  }, 300);
 
   private updateLoadingState(isLoading: boolean, error: string | null, type: ICalls) {
     runInAction(() => {

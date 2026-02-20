@@ -6,12 +6,11 @@ import Colors from '@/ui/styles/Colors';
 import Fonts from '@/ui/styles/Fonts';
 import { ms } from '@/ui/styles/FontsScale';
 import Spacings from '@/ui/styles/Spacings';
-import { hexToRgba } from '@/ui/utils/colorUtils';
 
 type Variant =
-  /** Transparent bg + accent-blue border. Use for secondary actions (Edit, View). */
+  /** Transparent bg + 1.5px accent-blue border. Use for secondary actions (Edit, View). */
   | 'outlined'
-  /** Transparent bg + white-25% border. Use for form actions (Reset, Cancel). */
+  /** No border, no fill, accent-blue text weight 500. Use for tertiary/ghost actions. */
   | 'ghost';
 
 type Props = {
@@ -60,7 +59,7 @@ const SecondaryButton = ({
         <Ionicons
           name={iconName}
           size={18}
-          color={isGhost ? Colors.base.textSecondary : Colors.base.accent}
+          color={Colors.base.accent}
         />
       )}
       <Text style={[styles.label, isGhost ? styles.labelGhost : styles.labelOutlined]}>
@@ -80,15 +79,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacings.xs,
     height: 52,
-    borderWidth: 1,
   },
 
   outlined: {
+    // Pencil DS: stroke 1.5px accent-blue, pill, no fill
+    borderWidth: 1.5,
     borderColor: Colors.base.accent,
   },
 
   ghost: {
-    borderColor: hexToRgba('#FFFFFF', 0.25),
+    // Pencil DS: no border, no fill, accent text weight 500
+    borderWidth: 0,
   },
 
   disabled: {
@@ -98,13 +99,18 @@ const styles = StyleSheet.create({
   label: {
     ...Fonts.bodyTextBold,
     fontSize: ms(15),
-  },
-
-  labelOutlined: {
     color: Colors.base.accent,
   },
 
+  labelOutlined: {
+    // accent color already set in base label
+    fontWeight: '600',
+  },
+
   labelGhost: {
-    color: Colors.base.textSecondary,
+    // Pencil DS Ghost: weight 500 (Inter-Medium)
+    fontFamily: 'Inter-Medium',
+    fontWeight: '500',
+    color: Colors.base.accent,
   },
 });
