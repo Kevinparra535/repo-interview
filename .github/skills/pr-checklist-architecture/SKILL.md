@@ -39,5 +39,13 @@ description: Review a PR or changeset to ensure Kevin’s Clean Architecture (RN
 ## Testing / QA
 
 - [ ] Clear steps to validate feature
+- [ ] `npm run test` passes locally
+- [ ] `npm run test:coverage` passes and global coverage stays ≥ 70%
+- [ ] New/changed ViewModels include tests for success, error, and computed state branches
+- [ ] UseCases include contract-collaboration tests (`toHaveBeenCalledWith`)
+- [ ] Services/repositories with mappers include unwrap/normalization branch tests when applicable
+- [ ] No network/Firebase calls in unit tests (all external deps mocked)
+- [ ] Global test setup is respected (`src/__test__/setupTests.ts`) to keep CI output clean
+- [ ] Coverage exclusions are justified and limited to non-behavioral files (e.g., logger wrappers, pure interfaces)
 - [ ] No sensitive keys committed
 - [ ] Lint/build passes (if applicable)

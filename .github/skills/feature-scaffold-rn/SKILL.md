@@ -63,6 +63,8 @@ If user didn’t specify, assume:
 - `src/__test__/domain/useCases/<feature>/` (use case tests)
 - `src/__test__/ui/viewModels/<Feature>ViewModel.test.ts` (viewmodel tests)
 - Optional: `src/__test__/data/repositories/<Feature>RepositoryImpl.test.ts` (mapping/contract tests)
+- Recommended: `src/__test__/data/services/<Feature>Service.test.ts` when service has unwrap/normalization logic
+- Recommended: `src/__test__/data/network/*HttpManager.test.ts` when adding/changing transport adapters
 
 ---
 
@@ -347,6 +349,16 @@ const <Feature>Screen = observer(() => {
 - Cover happy path + at least one failure path per critical action.
 - Keep tests deterministic: no Firebase/network calls, no real timers unless required.
 - Verify interaction contracts (`toHaveBeenCalledWith`) between ViewModel → UseCase and UseCase → Repository.
+- Use Jest repository standard (`jest-expo`), and run tests with `npm run test` / `npm run test:coverage`.
+- Keep logs silent through global setup (`src/__test__/setupTests.ts`) instead of muting per-test ad hoc.
+- Target at least **70% global coverage** after scaffold integration; prefer >80% when feature scope is bounded.
+- When adding debounce/retry logic, use fake timers and stale-input branch tests.
+
+### Coverage exclusions policy for scaffolded features
+
+- Excluding pure runtime-noise files is acceptable (example: logger wrappers).
+- Excluding pure contracts/interfaces is acceptable if they produce 0% noise with no executable logic.
+- Do not exclude ViewModels, UseCases, repositories, services, or validators that contain business behavior.
 
 ### Minimum test checklist per scaffold
 
@@ -354,6 +366,8 @@ const <Feature>Screen = observer(() => {
 2. `Create<Feature>UseCase` input handling and repository call
 3. `<Feature>ViewModel.load()` updates `loading/items/error` correctly
 4. One mutating action in ViewModel (`create`/`update`/`delete`) with success + failure
+5. `<Feature>ViewModel` getters/computed and reset/consume result methods
+6. `<Feature>Service` response unwrap + error normalization branches (if service exists)
 
 ---
 
